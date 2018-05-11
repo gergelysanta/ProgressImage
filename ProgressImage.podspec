@@ -9,7 +9,7 @@
 Pod::Spec.new do |s|
   s.name             = 'ProgressImage'
   s.version          = '0.1.0'
-  s.summary          = 'A short description of ProgressImage.'
+  s.summary          = 'A small ProgressImage usable in menu extras or context menus.'
 
 # This description is used to generate tags and improve search results.
 #   * Think: What does it do? Why did you write it? What is the focus?
@@ -18,18 +18,24 @@ Pod::Spec.new do |s|
 #   * Finally, don't worry about the indent, CocoaPods strips it!
 
   s.description      = <<-DESC
-TODO: Add long description of the pod here.
+This is an NSImage enhancement displaying a small progressbar.
+Why NSImage? The main point was to create a progressbar usable in menu extras (menubar)
+or in context menus and those items can contain only NSImages. ProgressImage is a small
+configurable image displaying graphical progress so you can visualize any progress up
+in the menu extras bar for example.
                        DESC
 
   s.homepage         = 'https://github.com/gergelysanta/ProgressImage'
   # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'gergelysanta' => 'santa@eset.sk' }
+  s.author           = { 'Gergely Sánta' => 'gergely.santa@trikatz.com' }
   s.source           = { :git => 'https://github.com/gergelysanta/ProgressImage.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  # s.social_media_url = 'https://twitter.com/gergelysanta'
 
   s.platform = :osx
   s.osx.deployment_target = "10.10"
+
+  s.swift_version = "4.0"
 
   s.source_files = 'ProgressImage/Classes/**/*'
 

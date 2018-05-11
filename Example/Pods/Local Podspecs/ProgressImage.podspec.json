@@ -1,0 +1,22 @@
+{
+  "name": "ProgressImage",
+  "version": "0.1.0",
+  "summary": "A short description of ProgressImage.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/gergelysanta/ProgressImage",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Gergely Sánta": "gergely.santa@trikatz.com"
+  },
+  "source": {
+    "git": "https://github.com/gergelysanta/ProgressImage.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "osx": "10.10"
+  },
+  "source_files": "ProgressImage/Classes/**/*"
+}

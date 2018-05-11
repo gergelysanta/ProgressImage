@@ -1,0 +1,6 @@
+framework module ProgressImage {
+  umbrella header "ProgressImage-umbrella.h"
+
+  export *
+  module * { export * }
+}
