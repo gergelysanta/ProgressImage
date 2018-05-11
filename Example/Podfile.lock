@@ -9,7 +9,7 @@ EXTERNAL SOURCES:
     :path: "../"
 
 SPEC CHECKSUMS:
-  ProgressImage: ebdac186b1ebb5a98fb9684b966ddc303655d626
+  ProgressImage: 99075dbdf6c7d8283df2060d814aac13abd6cedf
 
 PODFILE CHECKSUM: ded476d867e242296c1d593a245156c6cbaf608d
 

@@ -9,23 +9,23 @@
 import Cocoa
 import CoreGraphics
 
-class ProgressImage: NSImage {
+public class ProgressImage: NSImage {
 	
 	// MARK: - Public properties
 	
-	var cornerRadius:CGFloat = 5.0 {
+	public var cornerRadius:CGFloat = 5.0 {
 		didSet {
 			redrawProgressBar()
 		}
 	}
 	
-	var backgroundOpacity:CGFloat = 0.6 {
+	public var backgroundOpacity:CGFloat = 0.6 {
 		didSet {
 			redrawProgressBar()
 		}
 	}
 	
-	var color = NSColor.darkGray {
+	public var color = NSColor.darkGray {
 		didSet {
 			if let srgbColor = color.usingColorSpace(.sRGB) {
 				let red = srgbColor.cgColor.components?[0] ?? 0.5
@@ -43,13 +43,15 @@ class ProgressImage: NSImage {
 		}
 	}
 	
-	var progress:CGFloat = 0.0 {
+	public var progress:CGFloat = 0.0 {
 		didSet {
 			if progress < 0.0 { progress = 0.0 }
 			else if progress > 1.0 { progress = 1.0 }
 			redrawProgressBar()
 		}
 	}
+	
+	public let defaultSize = NSSize(width: 24.0, height: 16.0)
 	
 	// MARK: - Private properties
 	
@@ -58,24 +60,29 @@ class ProgressImage: NSImage {
 	
 	// MARK: - Initializers
 	
-	override init(size: NSSize) {
+	public init() {
+		super.init(size: defaultSize)
+		initialize()
+	}
+	
+	override public init(size: NSSize) {
 		super.init(size: size)
 		initialize(size)
 	}
 	
-	required init(coder: NSCoder) {
+	required public init(coder: NSCoder) {
 		super.init(coder: coder)
 		initialize()
 	}
 	
-	required init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
+	required public init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
 		super.init(pasteboardPropertyList: propertyList, ofType: type)
 		initialize()
 	}
 	
-	private func initialize(_ size: NSSize = NSSize(width: 24.0, height: 16.0)) {
+	private func initialize(_ size: NSSize = NSSize.zero) {
 		// Set default size (for a menuitem)
-		self.size = (size == NSSize.zero) ? NSSize(width: 24.0, height: 16.0) : size
+		self.size = (size == NSSize.zero) ? defaultSize : size
 
 		// Set default color (dark gray)
 		// This must be the last call, this will redraw the progressbar

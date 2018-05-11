@@ -1,8 +1,8 @@
 {
   "name": "ProgressImage",
   "version": "0.1.0",
-  "summary": "A short description of ProgressImage.",
-  "description": "TODO: Add long description of the pod here.",
+  "summary": "A small ProgressImage usable in menu extras or context menus.",
+  "description": "This is an NSImage enhancement displaying a small progressbar.\nWhy NSImage? The main point was to create a progressbar usable in menu extras (menubar)\nor in context menus and those items can contain only NSImages. ProgressImage is a small\nconfigurable image displaying graphical progress so you can visualize any progress up\nin the menu extras bar for example.",
   "homepage": "https://github.com/gergelysanta/ProgressImage",
   "license": {
     "type": "MIT",
@@ -18,5 +18,6 @@
   "platforms": {
     "osx": "10.10"
   },
+  "swift_version": "4.0",
   "source_files": "ProgressImage/Classes/**/*"
 }
