@@ -26,7 +26,7 @@ in the menu extras bar for example.
                        DESC
 
   s.homepage         = 'https://github.com/gergelysanta/ProgressImage'
-  s.screenshots     = 'https://github.com/gergelysanta/ProgressImage/blob/master/Screenshots/ProgressImageStatusItem.png', 'https://github.com/gergelysanta/ProgressImage/blob/master/Screenshots/ProgressImageStatusItem.gif', 'https://github.com/gergelysanta/ProgressImage/blob/master/Screenshots/ProgressImageContextMenu.png'
+  # s.screenshots     = 'https://github.com/gergelysanta/ProgressImage/blob/master/Screenshots/ProgressImageStatusItem.png', 'https://github.com/gergelysanta/ProgressImage/blob/master/Screenshots/ProgressImageStatusItem.gif', 'https://github.com/gergelysanta/ProgressImage/blob/master/Screenshots/ProgressImageContextMenu.png'
   s.license          = { :type => 'MIT', :file => 'LICENSE' }
   s.author           = { 'Gergely Sánta' => 'gergely.santa@trikatz.com' }
   s.source           = { :git => 'https://github.com/gergelysanta/ProgressImage.git', :tag => s.version.to_s }
