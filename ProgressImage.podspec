@@ -34,16 +34,15 @@ in the menu extras bar for example.
 
   s.platform = :osx
   s.osx.deployment_target = "10.10"
+  s.osx.frameworks = 'Cocoa'
 
   s.swift_version = "4.0"
 
-  s.source_files = 'ProgressImage/Classes/**/*'
+  s.source_files = 'Source/**/*'
 
   # s.resource_bundles = {
-  #   'ProgressImage' => ['ProgressImage/Assets/*.png']
+  #   'ProgressImage' => ['Source/Assets/*.png']
   # }
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'Cocoa'
-  # s.dependency 'AFNetworking', '~> 2.3'
+  # s.public_header_files = 'Pod/**/*.h'
 end

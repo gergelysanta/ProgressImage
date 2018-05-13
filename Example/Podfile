@@ -1,11 +1,5 @@
 use_frameworks!
 
-target 'ProgressImage_Example' do
+target 'ProgressExample' do
   pod 'ProgressImage', :path => '../'
-
-  target 'ProgressImage_Tests' do
-    inherit! :search_paths
-
-    
-  end
 end

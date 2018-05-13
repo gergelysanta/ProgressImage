@@ -7,45 +7,27 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		33D80955DEA234471A3044A6 /* Pods_ProgressImage_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7E051616F9EC72C544817044 /* Pods_ProgressImage_Tests.framework */; };
-		E8D37B92CBB59B15ED2E1FA6 /* Pods_ProgressImage_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1E23105456519D03C9354F6A /* Pods_ProgressImage_Example.framework */; };
+		74E3DDD120A851430093C267 /* Pods_ProgressExample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 74E3DDD020A851430093C267 /* Pods_ProgressExample.framework */; };
 		ED83F67C20348A760038D96B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED83F67B20348A760038D96B /* AppDelegate.swift */; };
 		ED83F67E20348A760038D96B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED83F67D20348A760038D96B /* ViewController.swift */; };
 		ED83F68020348A760038D96B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = ED83F67F20348A760038D96B /* Assets.xcassets */; };
 		ED83F68320348A760038D96B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = ED83F68120348A760038D96B /* Main.storyboard */; };
-		ED83F68F20348A760038D96B /* Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = ED83F68E20348A760038D96B /* Tests.swift */; };
 /* End PBXBuildFile section */
 
-/* Begin PBXContainerItemProxy section */
-		ED83F68B20348A760038D96B /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = ED83F67020348A760038D96B /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = ED83F67720348A760038D96B;
-			remoteInfo = ProgressImage;
-		};
-/* End PBXContainerItemProxy section */
-
 /* Begin PBXFileReference section */
-		1417560096A14C58F195A8DB /* Pods-ProgressImage_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressImage_Tests.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProgressImage_Tests/Pods-ProgressImage_Tests.release.xcconfig"; sourceTree = "<group>"; };
-		1E23105456519D03C9354F6A /* Pods_ProgressImage_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProgressImage_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		1946D181640924DB57FB6566 /* Pods-ProgressExample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressExample.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProgressExample/Pods-ProgressExample.release.xcconfig"; sourceTree = "<group>"; };
 		1EAEDBCA9F71B896B5E1629E /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		23987049C1766E2B66D36545 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
-		26E7466AEB7546A8A682E8A8 /* Pods-ProgressImage_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressImage_Example.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProgressImage_Example/Pods-ProgressImage_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		5168D8AB0ED7687E53EC8EB2 /* ProgressImage.podspec */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = ProgressImage.podspec; path = ../ProgressImage.podspec; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		7E051616F9EC72C544817044 /* Pods_ProgressImage_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ProgressImage_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D368F4F898011902DED60858 /* Pods-ProgressImage_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressImage_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-ProgressImage_Example/Pods-ProgressImage_Example.release.xcconfig"; sourceTree = "<group>"; };
-		D5300F70A4F43EAFAA982A42 /* Pods-ProgressImage_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressImage_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProgressImage_Tests/Pods-ProgressImage_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		ED83F67820348A760038D96B /* ProgressImage_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressImage_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		74E3DDD020A851430093C267 /* Pods_ProgressExample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_ProgressExample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		AA51719B480732BFF156D6E5 /* Pods-ProgressExample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ProgressExample.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ProgressExample/Pods-ProgressExample.debug.xcconfig"; sourceTree = "<group>"; };
+		ED83F67820348A760038D96B /* ProgressExample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ProgressExample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		ED83F67B20348A760038D96B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		ED83F67D20348A760038D96B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		ED83F67F20348A760038D96B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		ED83F68220348A760038D96B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		ED83F68420348A760038D96B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		ED83F68520348A760038D96B /* ProgressImage.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProgressImage.entitlements; sourceTree = "<group>"; };
-		ED83F68A20348A760038D96B /* ProgressImage_Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ProgressImage_Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		ED83F68E20348A760038D96B /* Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Tests.swift; sourceTree = "<group>"; };
-		ED83F69020348A760038D96B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		ED83F68520348A760038D96B /* ProgressExample.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ProgressExample.entitlements; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,15 +35,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E8D37B92CBB59B15ED2E1FA6 /* Pods_ProgressImage_Example.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ED83F68720348A760038D96B /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				33D80955DEA234471A3044A6 /* Pods_ProgressImage_Tests.framework in Frameworks */,
+				74E3DDD120A851430093C267 /* Pods_ProgressExample.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -71,10 +45,8 @@
 		52580E348D8ADE50889950E9 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
-				26E7466AEB7546A8A682E8A8 /* Pods-ProgressImage_Example.debug.xcconfig */,
-				D368F4F898011902DED60858 /* Pods-ProgressImage_Example.release.xcconfig */,
-				D5300F70A4F43EAFAA982A42 /* Pods-ProgressImage_Tests.debug.xcconfig */,
-				1417560096A14C58F195A8DB /* Pods-ProgressImage_Tests.release.xcconfig */,
+				AA51719B480732BFF156D6E5 /* Pods-ProgressExample.debug.xcconfig */,
+				1946D181640924DB57FB6566 /* Pods-ProgressExample.release.xcconfig */,
 			);
 			name = Pods;
 			sourceTree = "<group>";
@@ -83,8 +55,7 @@
 			isa = PBXGroup;
 			children = (
 				ED83F69A20348B650038D96B /* Podspec Metadata */,
-				ED83F67A20348A760038D96B /* ProgressImage */,
-				ED83F68D20348A760038D96B /* Tests */,
+				ED83F67A20348A760038D96B /* ProgressExample */,
 				ED83F67920348A760038D96B /* Products */,
 				52580E348D8ADE50889950E9 /* Pods */,
 				F276CFDAB7A4188E32DA48D8 /* Frameworks */,
@@ -94,13 +65,12 @@
 		ED83F67920348A760038D96B /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				ED83F67820348A760038D96B /* ProgressImage_Example.app */,
-				ED83F68A20348A760038D96B /* ProgressImage_Tests.xctest */,
+				ED83F67820348A760038D96B /* ProgressExample.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		ED83F67A20348A760038D96B /* ProgressImage */ = {
+		ED83F67A20348A760038D96B /* ProgressExample */ = {
 			isa = PBXGroup;
 			children = (
 				ED83F67B20348A760038D96B /* AppDelegate.swift */,
@@ -108,18 +78,9 @@
 				ED83F67F20348A760038D96B /* Assets.xcassets */,
 				ED83F68120348A760038D96B /* Main.storyboard */,
 				ED83F68420348A760038D96B /* Info.plist */,
-				ED83F68520348A760038D96B /* ProgressImage.entitlements */,
+				ED83F68520348A760038D96B /* ProgressExample.entitlements */,
 			);
-			path = ProgressImage;
-			sourceTree = "<group>";
-		};
-		ED83F68D20348A760038D96B /* Tests */ = {
-			isa = PBXGroup;
-			children = (
-				ED83F68E20348A760038D96B /* Tests.swift */,
-				ED83F69020348A760038D96B /* Info.plist */,
-			);
-			path = Tests;
+			path = ProgressExample;
 			sourceTree = "<group>";
 		};
 		ED83F69A20348B650038D96B /* Podspec Metadata */ = {
@@ -135,8 +96,7 @@
 		F276CFDAB7A4188E32DA48D8 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				1E23105456519D03C9354F6A /* Pods_ProgressImage_Example.framework */,
-				7E051616F9EC72C544817044 /* Pods_ProgressImage_Tests.framework */,
+				74E3DDD020A851430093C267 /* Pods_ProgressExample.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -144,9 +104,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		ED83F67720348A760038D96B /* ProgressImage_Example */ = {
+		ED83F67720348A760038D96B /* ProgressExample */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = ED83F69320348A760038D96B /* Build configuration list for PBXNativeTarget "ProgressImage_Example" */;
+			buildConfigurationList = ED83F69320348A760038D96B /* Build configuration list for PBXNativeTarget "ProgressExample" */;
 			buildPhases = (
 				9FB83EA6AEE1597409242304 /* [CP] Check Pods Manifest.lock */,
 				ED83F67420348A760038D96B /* Sources */,
@@ -158,29 +118,10 @@
 			);
 			dependencies = (
 			);
-			name = ProgressImage_Example;
+			name = ProgressExample;
 			productName = ProgressImage;
-			productReference = ED83F67820348A760038D96B /* ProgressImage_Example.app */;
+			productReference = ED83F67820348A760038D96B /* ProgressExample.app */;
 			productType = "com.apple.product-type.application";
-		};
-		ED83F68920348A760038D96B /* ProgressImage_Tests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = ED83F69620348A760038D96B /* Build configuration list for PBXNativeTarget "ProgressImage_Tests" */;
-			buildPhases = (
-				EB44F679DB3F7F8DF5550CC4 /* [CP] Check Pods Manifest.lock */,
-				ED83F68620348A760038D96B /* Sources */,
-				ED83F68720348A760038D96B /* Frameworks */,
-				ED83F68820348A760038D96B /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				ED83F68C20348A760038D96B /* PBXTargetDependency */,
-			);
-			name = ProgressImage_Tests;
-			productName = ProgressImageTests;
-			productReference = ED83F68A20348A760038D96B /* ProgressImage_Tests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
 		};
 /* End PBXNativeTarget section */
 
@@ -189,21 +130,16 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0900;
-				LastUpgradeCheck = 0900;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					ED83F67720348A760038D96B = {
 						CreatedOnToolsVersion = 9.0;
 						ProvisioningStyle = Automatic;
 					};
-					ED83F68920348A760038D96B = {
-						CreatedOnToolsVersion = 9.0;
-						ProvisioningStyle = Automatic;
-						TestTargetID = ED83F67720348A760038D96B;
-					};
 				};
 			};
-			buildConfigurationList = ED83F67320348A760038D96B /* Build configuration list for PBXProject "ProgressImage" */;
+			buildConfigurationList = ED83F67320348A760038D96B /* Build configuration list for PBXProject "ProgressExample" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -216,8 +152,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				ED83F67720348A760038D96B /* ProgressImage_Example */,
-				ED83F68920348A760038D96B /* ProgressImage_Tests */,
+				ED83F67720348A760038D96B /* ProgressExample */,
 			);
 		};
 /* End PBXProject section */
@@ -229,13 +164,6 @@
 			files = (
 				ED83F68020348A760038D96B /* Assets.xcassets in Resources */,
 				ED83F68320348A760038D96B /* Main.storyboard in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		ED83F68820348A760038D96B /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -253,25 +181,7 @@
 			);
 			name = "[CP] Check Pods Manifest.lock";
 			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ProgressImage_Example-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		EB44F679DB3F7F8DF5550CC4 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ProgressImage_Tests-checkManifestLockResult.txt",
+				"$(DERIVED_FILE_DIR)/Pods-ProgressExample-checkManifestLockResult.txt",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -284,7 +194,7 @@
 			files = (
 			);
 			inputPaths = (
-				"${SRCROOT}/Pods/Target Support Files/Pods-ProgressImage_Example/Pods-ProgressImage_Example-frameworks.sh",
+				"${SRCROOT}/Pods/Target Support Files/Pods-ProgressExample/Pods-ProgressExample-frameworks.sh",
 				"${BUILT_PRODUCTS_DIR}/ProgressImage/ProgressImage.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
@@ -293,7 +203,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProgressImage_Example/Pods-ProgressImage_Example-frameworks.sh\"\n";
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-ProgressExample/Pods-ProgressExample-frameworks.sh\"\n";
 			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
@@ -308,23 +218,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		ED83F68620348A760038D96B /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				ED83F68F20348A760038D96B /* Tests.swift in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
-
-/* Begin PBXTargetDependency section */
-		ED83F68C20348A760038D96B /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = ED83F67720348A760038D96B /* ProgressImage_Example */;
-			targetProxy = ED83F68B20348A760038D96B /* PBXContainerItemProxy */;
-		};
-/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		ED83F68120348A760038D96B /* Main.storyboard */ = {
@@ -352,6 +246,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -359,6 +254,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -409,6 +305,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -416,6 +313,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -446,15 +344,15 @@
 		};
 		ED83F69420348A760038D96B /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 26E7466AEB7546A8A682E8A8 /* Pods-ProgressImage_Example.debug.xcconfig */;
+			baseConfigurationReference = AA51719B480732BFF156D6E5 /* Pods-ProgressExample.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ProgressImage/ProgressImage.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ProgressExample/ProgressExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ProgressImage/Info.plist;
+				INFOPLIST_FILE = ProgressExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.ProgressImage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trikatz.ProgressExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
 			};
@@ -462,58 +360,24 @@
 		};
 		ED83F69520348A760038D96B /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = D368F4F898011902DED60858 /* Pods-ProgressImage_Example.release.xcconfig */;
+			baseConfigurationReference = 1946D181640924DB57FB6566 /* Pods-ProgressExample.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = ProgressImage/ProgressImage.entitlements;
+				CODE_SIGN_ENTITLEMENTS = ProgressExample/ProgressExample.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = ProgressImage/Info.plist;
+				INFOPLIST_FILE = ProgressExample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = org.cocoapods.demo.ProgressImage;
+				PRODUCT_BUNDLE_IDENTIFIER = com.trikatz.ProgressExample;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-			};
-			name = Release;
-		};
-		ED83F69720348A760038D96B /* Debug */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = D5300F70A4F43EAFAA982A42 /* Pods-ProgressImage_Tests.debug.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.ProgressImage-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "";
-			};
-			name = Debug;
-		};
-		ED83F69820348A760038D96B /* Release */ = {
-			isa = XCBuildConfiguration;
-			baseConfigurationReference = 1417560096A14C58F195A8DB /* Pods-ProgressImage_Tests.release.xcconfig */;
-			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
-				BUNDLE_LOADER = "$(TEST_HOST)";
-				CODE_SIGN_STYLE = Automatic;
-				COMBINE_HIDPI_IMAGES = YES;
-				INFOPLIST_FILE = Tests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.ProgressImage-Tests";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
-				TEST_HOST = "";
 			};
 			name = Release;
 		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		ED83F67320348A760038D96B /* Build configuration list for PBXProject "ProgressImage" */ = {
+		ED83F67320348A760038D96B /* Build configuration list for PBXProject "ProgressExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ED83F69120348A760038D96B /* Debug */,
@@ -522,20 +386,11 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		ED83F69320348A760038D96B /* Build configuration list for PBXNativeTarget "ProgressImage_Example" */ = {
+		ED83F69320348A760038D96B /* Build configuration list for PBXNativeTarget "ProgressExample" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				ED83F69420348A760038D96B /* Debug */,
 				ED83F69520348A760038D96B /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		ED83F69620348A760038D96B /* Build configuration list for PBXNativeTarget "ProgressImage_Tests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				ED83F69720348A760038D96B /* Debug */,
-				ED83F69820348A760038D96B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
