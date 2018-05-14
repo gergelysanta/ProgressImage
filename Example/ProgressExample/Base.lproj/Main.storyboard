@@ -2,6 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14109"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
         <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -99,7 +100,7 @@
                         <outlet property="delegate" destination="Voe-Tx-rLC" id="PrD-fu-P6m"/>
                     </connections>
                 </application>
-                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ProgressImage_Example" customModuleProvider="target"/>
+                <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="ProgressExample" customModuleProvider="target"/>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
                 <customObject id="Ady-hI-5gd" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -129,13 +130,13 @@
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
             <objects>
-                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ProgressImage_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XfG-lQ-9wD" customClass="ViewController" customModule="ProgressExample" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" wantsLayer="YES" id="m2S-Jp-Qdl">
-                        <rect key="frame" x="0.0" y="0.0" width="480" height="297"/>
+                        <rect key="frame" x="0.0" y="0.0" width="480" height="288"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZrI-x0-k0p">
-                                <rect key="frame" x="154" y="209" width="308" height="17"/>
+                                <rect key="frame" x="186" y="200" width="276" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Progress: 50%" id="ngE-hn-W0Q">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -143,7 +144,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="dVP-hi-KY8">
-                                <rect key="frame" x="140" y="100" width="200" height="17"/>
+                                <rect key="frame" x="156" y="96" width="200" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Ctrl+click here for context menu" id="Voc-Vd-Ysd">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -151,9 +152,9 @@
                                 </textFieldCell>
                             </textField>
                             <box boxType="custom" cornerRadius="4" title="Box" translatesAutoresizingMaskIntoConstraints="NO" id="uzf-AU-32p">
-                                <rect key="frame" x="20" y="20" width="440" height="177"/>
+                                <rect key="frame" x="52" y="20" width="408" height="168"/>
                                 <view key="contentView" id="VqM-e5-AwO">
-                                    <rect key="frame" x="1" y="1" width="438" height="175"/>
+                                    <rect key="frame" x="1" y="1" width="406" height="166"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                 </view>
                                 <constraints>
@@ -164,14 +165,14 @@
                                 </connections>
                             </box>
                             <slider verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="J9W-hi-Uj0">
-                                <rect key="frame" x="18" y="235" width="444" height="19"/>
+                                <rect key="frame" x="18" y="226" width="444" height="19"/>
                                 <sliderCell key="cell" continuous="YES" state="on" alignment="left" maxValue="100" doubleValue="50" tickMarkPosition="above" sliderType="linear" id="Q6P-hc-CLy"/>
                                 <connections>
                                     <action selector="sliderValueChanged:" target="XfG-lQ-9wD" id="O2i-yd-whu"/>
                                 </connections>
                             </slider>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="QCj-sG-gKg">
-                                <rect key="frame" x="18" y="260" width="444" height="17"/>
+                                <rect key="frame" x="18" y="251" width="444" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Move the slider below to change the ProgressExample's progress value" id="Zid-M4-mPD">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -179,54 +180,90 @@
                                 </textFieldCell>
                             </textField>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gu2-8b-rJo">
-                                <rect key="frame" x="20" y="205" width="128" height="24"/>
+                                <rect key="frame" x="52" y="196" width="128" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="3tT-kW-cLn"/>
                                     <constraint firstAttribute="width" constant="128" id="nAj-fH-ONr"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="6z6-iM-YZ3"/>
                             </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Ynx-XG-6RL">
+                                <rect key="frame" x="20" y="20" width="24" height="168"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="24" id="LyD-H2-IrI"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="Klt-cf-Enb"/>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="MK7-Zc-mCI">
+                                <rect key="frame" x="20" y="196" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="MK7-Zc-mCI" secondAttribute="height" multiplier="1:1" id="XIO-6R-PA8"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="7eE-K7-3nd"/>
+                            </imageView>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="bottom" secondItem="Ynx-XG-6RL" secondAttribute="bottom" constant="20" id="3GG-A3-IJz"/>
                             <constraint firstItem="gu2-8b-rJo" firstAttribute="top" secondItem="J9W-hi-Uj0" secondAttribute="bottom" constant="8" id="47H-uf-kiP"/>
                             <constraint firstAttribute="bottom" secondItem="uzf-AU-32p" secondAttribute="bottom" constant="20" id="4eg-gg-Y4L"/>
                             <constraint firstItem="J9W-hi-Uj0" firstAttribute="top" secondItem="QCj-sG-gKg" secondAttribute="bottom" constant="8" id="5JD-YN-GF0"/>
                             <constraint firstAttribute="trailing" secondItem="J9W-hi-Uj0" secondAttribute="trailing" constant="20" id="5UH-Yo-wXv"/>
                             <constraint firstItem="ZrI-x0-k0p" firstAttribute="centerY" secondItem="gu2-8b-rJo" secondAttribute="centerY" id="6e3-zb-esx"/>
+                            <constraint firstItem="uzf-AU-32p" firstAttribute="leading" secondItem="Ynx-XG-6RL" secondAttribute="trailing" constant="8" id="8Tc-Pm-Qii"/>
+                            <constraint firstItem="gu2-8b-rJo" firstAttribute="leading" secondItem="MK7-Zc-mCI" secondAttribute="trailing" constant="8" id="A4d-BM-SXu"/>
                             <constraint firstItem="uzf-AU-32p" firstAttribute="top" secondItem="gu2-8b-rJo" secondAttribute="bottom" constant="8" id="BG3-PE-AT5"/>
                             <constraint firstItem="QCj-sG-gKg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Byz-x9-4uC"/>
-                            <constraint firstItem="uzf-AU-32p" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="CwZ-pe-c8x"/>
+                            <constraint firstItem="Ynx-XG-6RL" firstAttribute="top" secondItem="gu2-8b-rJo" secondAttribute="bottom" constant="8" id="OFc-sN-1rv"/>
+                            <constraint firstAttribute="trailing" secondItem="ZrI-x0-k0p" secondAttribute="trailing" constant="20" id="PwU-ts-ihD"/>
+                            <constraint firstItem="Ynx-XG-6RL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="QUv-N7-ht8"/>
                             <constraint firstItem="dVP-hi-KY8" firstAttribute="centerY" secondItem="uzf-AU-32p" secondAttribute="centerY" id="VSK-QU-YgP"/>
-                            <constraint firstItem="gu2-8b-rJo" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="f8i-e2-c2l"/>
+                            <constraint firstItem="uzf-AU-32p" firstAttribute="top" secondItem="MK7-Zc-mCI" secondAttribute="bottom" constant="8" id="aae-Er-t5P"/>
                             <constraint firstItem="J9W-hi-Uj0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="gcx-3n-a9H"/>
                             <constraint firstItem="ZrI-x0-k0p" firstAttribute="leading" secondItem="gu2-8b-rJo" secondAttribute="trailing" constant="8" id="iN3-h1-IKq"/>
+                            <constraint firstItem="MK7-Zc-mCI" firstAttribute="top" secondItem="J9W-hi-Uj0" secondAttribute="bottom" constant="8" id="is2-ph-LsP"/>
                             <constraint firstItem="dVP-hi-KY8" firstAttribute="centerX" secondItem="uzf-AU-32p" secondAttribute="centerX" id="j1B-m0-0lQ"/>
                             <constraint firstItem="QCj-sG-gKg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="pQK-QN-CMA"/>
                             <constraint firstAttribute="trailing" secondItem="uzf-AU-32p" secondAttribute="trailing" constant="20" id="r6g-In-IQ4"/>
-                            <constraint firstAttribute="trailing" secondItem="ZrI-x0-k0p" secondAttribute="trailing" constant="20" id="tJV-rF-STw"/>
                             <constraint firstAttribute="trailing" secondItem="QCj-sG-gKg" secondAttribute="trailing" constant="20" id="wbk-OE-Voh"/>
+                            <constraint firstItem="MK7-Zc-mCI" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="wuG-FT-Xft"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="progressImageView" destination="gu2-8b-rJo" id="24O-zc-FWH"/>
+                        <outlet property="progressHorizontalBarMenuItem" destination="kB0-sM-dj8" id="Dmh-c5-U7D"/>
+                        <outlet property="progressImageHorizontalView" destination="gu2-8b-rJo" id="8ng-Gx-ks4"/>
+                        <outlet property="progressImagePieView" destination="MK7-Zc-mCI" id="u0y-t2-4Xy"/>
+                        <outlet property="progressImageVerticalView" destination="Ynx-XG-6RL" id="7lb-ap-XaX"/>
                         <outlet property="progressLabel" destination="ZrI-x0-k0p" id="Zjv-rc-Fvk"/>
-                        <outlet property="progressMenuItem" destination="kB0-sM-dj8" id="SKT-Er-gYf"/>
+                        <outlet property="progressPieMenuItem" destination="0zB-tH-S87" id="zLP-qm-X6C"/>
                         <outlet property="progressSlider" destination="J9W-hi-Uj0" id="Iuy-Uk-NkY"/>
+                        <outlet property="progressVerticalBarMenuItem" destination="RrP-gb-DPe" id="VVQ-0P-ydk"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="qDX-7i-wqE">
                     <items>
-                        <menuItem title="Progress: 50%" id="kB0-sM-dj8">
+                        <menuItem title="Horizontal progress" id="kB0-sM-dj8">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <connections>
-                                <action selector="menuItemSelected:" target="XfG-lQ-9wD" id="zfR-aD-YgA"/>
+                                <action selector="menuItemSelected:" target="XfG-lQ-9wD" id="PsN-2O-k7v"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Vertical progress" id="RrP-gb-DPe">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="menuItemSelected:" target="XfG-lQ-9wD" id="XPC-u2-Vym"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Pie progress" id="0zB-tH-S87">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <connections>
+                                <action selector="menuItemSelected:" target="XfG-lQ-9wD" id="MKy-uO-WKN"/>
                             </connections>
                         </menuItem>
                     </items>
                 </menu>
             </objects>
-            <point key="canvasLocation" x="75" y="766.5"/>
+            <point key="canvasLocation" x="75" y="762"/>
         </scene>
     </scenes>
 </document>

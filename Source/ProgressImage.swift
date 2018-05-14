@@ -3,7 +3,7 @@
 //  ProgressImage
 //
 //  Created by Gergely Sánta on 30/04/2018.
-//  Copyright © 2018 TriKatz. All rights reserved.
+//  Copyright © 2018 Gergely Sánta. All rights reserved.
 //
 
 import Cocoa
@@ -11,7 +11,30 @@ import CoreGraphics
 
 public class ProgressImage: NSImage {
 	
-	// MARK: - Public properties
+	// MARK: - Public class properties
+	
+	public static let defaultType = ProgressType.horizontal
+	public static let defaultSize = NSSize(width: 24.0, height: 16.0)
+	
+	// MARK: - Public instance properties
+	
+	public enum ProgressType {
+		case horizontal
+		case vertical
+		case pie
+	}
+	
+	public var type = ProgressType.horizontal {
+		didSet {
+			redrawProgressBar()
+		}
+	}
+	
+	public override var size: NSSize {
+		didSet {
+			redrawProgressBar()
+		}
+	}
 	
 	public var cornerRadius:CGFloat = 5.0 {
 		didSet {
@@ -51,9 +74,8 @@ public class ProgressImage: NSImage {
 		}
 	}
 	
-	public let defaultSize = NSSize(width: 24.0, height: 16.0)
+	// MARK: - Private instance properties
 	
-	// MARK: - Private properties
 	
 	private var progressColor = NSColor.darkGray
 	private var progressBackgroundColor = NSColor.darkGray
@@ -61,29 +83,42 @@ public class ProgressImage: NSImage {
 	// MARK: - Initializers
 	
 	public init() {
-		super.init(size: defaultSize)
-		initialize()
+		super.init(size: ProgressImage.defaultSize)
+		initialize(withType: ProgressImage.defaultType, andSize: ProgressImage.defaultSize)
+	}
+	
+	public init(type: ProgressImage.ProgressType) {
+		super.init(size: ProgressImage.defaultSize)
+		initialize(withType: type, andSize: ProgressImage.defaultSize)
 	}
 	
 	override public init(size: NSSize) {
 		super.init(size: size)
-		initialize(size)
+		initialize(withType: ProgressImage.defaultType, andSize: size)
+	}
+	
+	public init(type: ProgressImage.ProgressType, size: NSSize) {
+		super.init(size: ProgressImage.defaultSize)
+		initialize(withType: type, andSize: size)
 	}
 	
 	required public init(coder: NSCoder) {
 		super.init(coder: coder)
-		initialize()
+		initialize(withType: ProgressImage.defaultType, andSize: ProgressImage.defaultSize)
 	}
 	
 	required public init?(pasteboardPropertyList propertyList: Any, ofType type: NSPasteboard.PasteboardType) {
 		super.init(pasteboardPropertyList: propertyList, ofType: type)
-		initialize()
+		initialize(withType: ProgressImage.defaultType, andSize: ProgressImage.defaultSize)
 	}
 	
-	private func initialize(_ size: NSSize = NSSize.zero) {
-		// Set default size (for a menuitem)
-		self.size = (size == NSSize.zero) ? defaultSize : size
-
+	private func initialize(withType type: ProgressType, andSize size: NSSize) {
+		// Set default size (of a menuitem) if it's initialized to zero
+		self.size = (size == NSSize.zero) ? ProgressImage.defaultSize : size
+		
+		// Set type
+		self.type = type
+		
 		// Set default color (dark gray)
 		// This must be the last call, this will redraw the progressbar
 		self.color = NSColor.darkGray
@@ -101,18 +136,63 @@ public class ProgressImage: NSImage {
 		imgRect.fill(using: NSCompositingOperation.clear)
 		
 		context?.saveGState()
-
-		// Draw background
-		let bezierPath = NSBezierPath(roundedRect: imgRect, xRadius: cornerRadius, yRadius: cornerRadius)
-		progressBackgroundColor.setFill()
-		bezierPath.fill()
 		
-		// Set mask for drawing the progress meter
-		context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width*progress, height: size.height)))
-		
-		// Draw progress meter (same frame as the background but masket and with different color)
-		progressColor.setFill()
-		bezierPath.fill()
+		switch type {
+		case .horizontal:
+			
+			// Draw background
+			let bezierPath = NSBezierPath(roundedRect: imgRect, xRadius: cornerRadius, yRadius: cornerRadius)
+			progressBackgroundColor.setFill()
+			bezierPath.fill()
+			
+			// Set mask for drawing the progress meter
+			context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width*progress, height: size.height)))
+			
+			// Draw progress meter (same frame as the background but masked and with different color)
+			progressColor.setFill()
+			bezierPath.fill()
+			
+		case .vertical:
+			
+			// Draw background
+			let bezierPath = NSBezierPath(roundedRect: imgRect, xRadius: cornerRadius, yRadius: cornerRadius)
+			progressBackgroundColor.setFill()
+			bezierPath.fill()
+			
+			// Set mask for drawing the progress meter
+			context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width, height: size.height*progress)))
+			
+			// Draw progress meter (same frame as the background but masked and with different color)
+			progressColor.setFill()
+			bezierPath.fill()
+			
+		case .pie:
+			
+			let center = NSPoint(x: imgRect.size.width * 0.5, y: imgRect.size.height * 0.5)
+			let radius = (imgRect.size.width < imgRect.size.height) ? imgRect.size.width * 0.5 : imgRect.size.height * 0.5
+			
+			// Draw background
+			let backgroundPath = NSBezierPath()
+			backgroundPath.appendArc(withCenter: center, radius: radius, startAngle: 0.0, endAngle: 360.0)
+			
+			progressBackgroundColor.setFill()
+			backgroundPath.fill()
+			
+			// Draw the "pie graph"
+			// Start to draw the path from the center of the circle
+			let piePath = NSBezierPath()
+			piePath.move(to: center)
+			// Draws a line from the center to the starting point of the arc AND the arc
+			let startAngle:CGFloat = 0.0
+			let endAngle:CGFloat = 360.0 * progress
+			piePath.appendArc(withCenter: center, radius: radius, startAngle: startAngle + 90.0, endAngle: endAngle + 90.0)
+			// Closing the path draws a line from the end point of the arc back to the center
+			piePath.close()
+			// Draw the pie
+			progressColor.setFill()
+			piePath.fill()
+			
+		}
 		
 		context?.restoreGState()
 		self.unlockFocus()
