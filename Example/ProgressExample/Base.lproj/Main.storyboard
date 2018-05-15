@@ -262,7 +262,7 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
                 <menu id="qDX-7i-wqE">
                     <items>
-                        <menuItem title="Horizontal progress" state="on" id="kB0-sM-dj8" customClass="ProgressMenuItem" customModule="ProgressImage">
+                        <menuItem title="Horizontal progress" id="kB0-sM-dj8" customClass="ProgressMenuItem" customModule="ProgressImage">
                             <modifierMask key="keyEquivalentModifierMask"/>
                             <userDefinedRuntimeAttributes>
                                 <userDefinedRuntimeAttribute type="number" keyPath="typeVal">
