@@ -6,7 +6,6 @@
 //
 
 import Cocoa
-import ProgressImage
 
 public class ProgressMenuItem: NSMenuItem {
 	
