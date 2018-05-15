@@ -11,15 +11,40 @@ import ProgressImage
 
 class ViewController: NSViewController {
 	
+	// MARK: - Outlets
+	
+	// Slider used for changing progress value in progressimages
 	@IBOutlet weak var progressSlider: NSSlider!
-	@IBOutlet weak var progressImageHorizontalView: NSImageView!
-	@IBOutlet weak var progressImageVerticalView: NSImageView!
-	@IBOutlet weak var progressImagePieView: NSImageView!
+	
+	// ProgressImageViews
+	// Their type is set in InterfaceBuilder:
+	//     Attributes Inspector -> Progress Image View -> Type Val
+	// These values there are:
+	//     0 = Horizontal ProgressBar
+	//     1 = Vertical ProgressBar
+	//     2 = PieGraph ProgressBar
+	//     anything else = Horizontal ProgressBar
+	@IBOutlet weak var progressImageHorizontalView: ProgressImageView!
+	@IBOutlet weak var progressImageVerticalView: ProgressImageView!
+	@IBOutlet weak var progressImagePieView: ProgressImageView!
+	
+	// Label showing progress percentage in textual form
 	@IBOutlet weak var progressLabel: NSTextField!
-	@IBOutlet weak var progressHorizontalBarMenuItem: NSMenuItem!
-	@IBOutlet weak var progressVerticalBarMenuItem: NSMenuItem!
-	@IBOutlet weak var progressPieMenuItem: NSMenuItem!
-
+	
+	// ProgressMenuItems
+	// Their type is set in InterfaceBuilder:
+	//     Attributes Inspector -> Progress Menu Item -> Type Val
+	// These values there are:
+	//     0 = Horizontal ProgressBar
+	//     1 = Vertical ProgressBar
+	//     2 = PieGraph ProgressBar
+	//     anything else = Horizontal ProgressBar
+	@IBOutlet weak var progressHorizontalBarMenuItem: ProgressMenuItem!
+	@IBOutlet weak var progressVerticalBarMenuItem: ProgressMenuItem!
+	@IBOutlet weak var progressPieMenuItem: ProgressMenuItem!
+	
+	// MARK: - Actions
+	
 	@IBAction func sliderValueChanged(_ sender: NSSlider) {
 		changeProgress(CGFloat(sender.floatValue/100.0))
 	}
@@ -28,21 +53,9 @@ class ViewController: NSViewController {
 		print(sender.title)
 	}
 	
+	// MARK: - Methods
+	
 	override func viewDidLoad() {
-		
-		// Create progressimage for the horizontal imageview
-		progressImageHorizontalView.image = ProgressImage(size: progressImageHorizontalView.frame.size)
-		
-		// Create progressimage for the vertical imageview
-		progressImageVerticalView.image = ProgressImage(type: .vertical)
-		
-		// Create progressimage for the pie imageview
-		progressImagePieView.image = ProgressImage(type: .pie, size: progressImagePieView.frame.size)
-		
-		// Create progressimages for context menu
-		progressHorizontalBarMenuItem.image = ProgressImage()
-		progressVerticalBarMenuItem.image = ProgressImage(type: .vertical, size: NSSize(width: 16.0, height: 16.0))
-		progressPieMenuItem.image = ProgressImage(type: .pie, size: NSSize(width: 16.0, height: 16.0))
 		
 		// Actualize progress image value
 		sliderValueChanged(progressSlider)
@@ -53,45 +66,23 @@ class ViewController: NSViewController {
 		let progressTitle = String(format: "Progress: %.0f%%", progressValue*100)
 		
 		// Change progress in main window
-		if let progressImage = progressImageHorizontalView.image as? ProgressImage {
-			progressImage.progress = progressValue
-			progressImageHorizontalView.needsDisplay = true
-		}
-		if let progressImage = progressImageVerticalView.image as? ProgressImage {
-			progressImage.progress = progressValue
-			progressImageVerticalView.needsDisplay = true
-		}
-		if let progressImage = progressImagePieView.image as? ProgressImage {
-			progressImage.progress = progressValue
-			progressImagePieView.needsDisplay = true
-		}
-
+		progressImageHorizontalView.progress = progressValue
+		progressImageVerticalView.progress = progressValue
+		progressImagePieView.progress = progressValue
+		
 		progressLabel.stringValue = progressTitle
 		
 		// Change progress in context menu
-		if let progressImage = progressHorizontalBarMenuItem.image as? ProgressImage {
-			progressImage.progress = progressValue
-		}
+		progressHorizontalBarMenuItem.progress = progressValue
 		progressHorizontalBarMenuItem.title = progressTitle
-		if let progressImage = progressVerticalBarMenuItem.image as? ProgressImage {
-			progressImage.progress = progressValue
-		}
+		progressVerticalBarMenuItem.progress = progressValue
 		progressVerticalBarMenuItem.title = progressTitle
-		if let progressImage = progressPieMenuItem.image as? ProgressImage {
-			progressImage.progress = progressValue
-		}
+		progressPieMenuItem.progress = progressValue
 		progressPieMenuItem.title = progressTitle
-
+		
 		// Call delegate's changeProgresss
 		// This will actualize progress image in statusitem
 		(NSApp.delegate as? AppDelegate)?.changeProgress(progressValue)
-	}
-	
-	override func viewDidLayout() {
-		// Resize vertical progressbar
-		if let progressImage = progressImageVerticalView.image as? ProgressImage {
-			progressImage.size = progressImageVerticalView.frame.size
-		}
 	}
 	
 }

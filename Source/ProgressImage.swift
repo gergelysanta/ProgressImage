@@ -3,7 +3,6 @@
 //  ProgressImage
 //
 //  Created by Gergely Sánta on 30/04/2018.
-//  Copyright © 2018 Gergely Sánta. All rights reserved.
 //
 
 import Cocoa
@@ -13,18 +12,18 @@ public class ProgressImage: NSImage {
 	
 	// MARK: - Public class properties
 	
-	public static let defaultType = ProgressType.horizontal
+	public static let defaultType = ProgressImage.ProgressType.horizontal
 	public static let defaultSize = NSSize(width: 24.0, height: 16.0)
 	
 	// MARK: - Public instance properties
 	
-	public enum ProgressType {
+	public enum ProgressType: Int {
 		case horizontal
 		case vertical
 		case pie
 	}
 	
-	public var type = ProgressType.horizontal {
+	public var type = ProgressImage.ProgressType.horizontal {
 		didSet {
 			redrawProgressBar()
 		}
@@ -112,7 +111,7 @@ public class ProgressImage: NSImage {
 		initialize(withType: ProgressImage.defaultType, andSize: ProgressImage.defaultSize)
 	}
 	
-	private func initialize(withType type: ProgressType, andSize size: NSSize) {
+	private func initialize(withType type: ProgressImage.ProgressType, andSize size: NSSize) {
 		// Set default size (of a menuitem) if it's initialized to zero
 		self.size = (size == NSSize.zero) ? ProgressImage.defaultSize : size
 		
