@@ -65,6 +65,24 @@ public class ProgressImage: NSImage {
 		}
 	}
 	
+	public var colorDarkMode = NSColor.lightGray {
+		didSet {
+			if let srgbColor = colorDarkMode.usingColorSpace(.sRGB) {
+				let red = srgbColor.cgColor.components?[0] ?? 0.5
+				let green = srgbColor.cgColor.components?[1] ?? 0.5
+				let blue = srgbColor.cgColor.components?[2] ?? 0.5
+				let alpha = srgbColor.cgColor.alpha
+				progressColorDarkMode = NSColor(red:red, green:green, blue:blue, alpha: alpha)
+				progressBackgroundColorDarkMode = NSColor(red:red, green:green, blue:blue, alpha: alpha * backgroundOpacity)
+			}
+			else {
+				progressColorDarkMode = NSColor(red:0.5, green:0.5, blue:0.5, alpha: 1.0)
+				progressBackgroundColorDarkMode = NSColor(red:0.5, green:0.5, blue:0.5, alpha: backgroundOpacity)
+			}
+			redrawProgressBar()
+		}
+	}
+	
 	public var progress:CGFloat = 0.0 {
 		didSet {
 			if progress < 0.0 { progress = 0.0 }
@@ -75,10 +93,12 @@ public class ProgressImage: NSImage {
 	
 	// MARK: - Private instance properties
 	
-	
 	private var progressColor = NSColor.darkGray
 	private var progressBackgroundColor = NSColor.darkGray
 	
+	private var progressColorDarkMode = NSColor.lightGray
+	private var progressBackgroundColorDarkMode = NSColor.lightGray
+
 	// MARK: - Initializers
 	
 	public init() {
@@ -121,12 +141,24 @@ public class ProgressImage: NSImage {
 		// Set default color (dark gray)
 		// This must be the last call, this will redraw the progressbar
 		self.color = NSColor.darkGray
+		self.colorDarkMode = NSColor.lightGray
 	}
 	
 	// MARK: - Custom draw function
 	
 	private func redrawProgressBar() {
 		let imgRect = NSRect(origin: CGPoint.zero, size: size)
+		
+		let isDarkModeEnabled:Bool
+		// !!! Uncomment for Xcode10 !!!
+//		if #available(macOS 10.14, *) {
+//			isDarkModeEnabled = (NSApp.effectiveAppearance.name == .darkAqua)
+//		} else {
+			isDarkModeEnabled = false
+//		}
+		
+		let drawColor = isDarkModeEnabled ? progressColorDarkMode : progressColor
+		let drawColorBackground = isDarkModeEnabled ? progressBackgroundColorDarkMode : progressBackgroundColor
 		
 		self.lockFocus()
 		let context = NSGraphicsContext.current?.cgContext
@@ -141,28 +173,28 @@ public class ProgressImage: NSImage {
 			
 			// Draw background
 			let bezierPath = NSBezierPath(roundedRect: imgRect, xRadius: cornerRadius, yRadius: cornerRadius)
-			progressBackgroundColor.setFill()
+			drawColorBackground.setFill()
 			bezierPath.fill()
 			
 			// Set mask for drawing the progress meter
 			context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width*progress, height: size.height)))
 			
 			// Draw progress meter (same frame as the background but masked and with different color)
-			progressColor.setFill()
+			drawColor.setFill()
 			bezierPath.fill()
 			
 		case .vertical:
 			
 			// Draw background
 			let bezierPath = NSBezierPath(roundedRect: imgRect, xRadius: cornerRadius, yRadius: cornerRadius)
-			progressBackgroundColor.setFill()
+			drawColorBackground.setFill()
 			bezierPath.fill()
 			
 			// Set mask for drawing the progress meter
 			context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width, height: size.height*progress)))
 			
 			// Draw progress meter (same frame as the background but masked and with different color)
-			progressColor.setFill()
+			drawColor.setFill()
 			bezierPath.fill()
 			
 		case .pie:
@@ -174,7 +206,7 @@ public class ProgressImage: NSImage {
 			let backgroundPath = NSBezierPath()
 			backgroundPath.appendArc(withCenter: center, radius: radius, startAngle: 0.0, endAngle: 360.0)
 			
-			progressBackgroundColor.setFill()
+			drawColorBackground.setFill()
 			backgroundPath.fill()
 			
 			// Draw the "pie graph"
@@ -188,7 +220,7 @@ public class ProgressImage: NSImage {
 			// Closing the path draws a line from the end point of the arc back to the center
 			piePath.close()
 			// Draw the pie
-			progressColor.setFill()
+			drawColor.setFill()
 			piePath.fill()
 			
 		}

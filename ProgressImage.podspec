@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ProgressImage'
-  s.version          = '0.2.0'
+  s.version          = '0.2.1'
   s.summary          = 'A small customizable ProgressImage usable in menu extras or context menus.'
 
 # This description is used to generate tags and improve search results.
