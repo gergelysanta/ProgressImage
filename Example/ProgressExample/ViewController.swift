@@ -23,10 +23,12 @@ class ViewController: NSViewController {
 	//     0 = Horizontal ProgressBar
 	//     1 = Vertical ProgressBar
 	//     2 = PieGraph ProgressBar
+	//     3 = Arc ProgressBar
 	//     anything else = Horizontal ProgressBar
 	@IBOutlet weak var progressImageHorizontalView: ProgressImageView!
 	@IBOutlet weak var progressImageVerticalView: ProgressImageView!
 	@IBOutlet weak var progressImagePieView: ProgressImageView!
+	@IBOutlet weak var progressImageArcView: ProgressImageView!
 	
 	// Label showing progress percentage in textual form
 	@IBOutlet weak var progressLabel: NSTextField!
@@ -38,10 +40,12 @@ class ViewController: NSViewController {
 	//     0 = Horizontal ProgressBar
 	//     1 = Vertical ProgressBar
 	//     2 = PieGraph ProgressBar
+	//     3 = Arc ProgressBar
 	//     anything else = Horizontal ProgressBar
 	@IBOutlet weak var progressHorizontalBarMenuItem: ProgressMenuItem!
 	@IBOutlet weak var progressVerticalBarMenuItem: ProgressMenuItem!
 	@IBOutlet weak var progressPieMenuItem: ProgressMenuItem!
+	@IBOutlet weak var progressArcMenuItem: ProgressMenuItem!
 	
 	// MARK: - Actions
 	
@@ -69,6 +73,7 @@ class ViewController: NSViewController {
 		progressImageHorizontalView.progress = progressValue
 		progressImageVerticalView.progress = progressValue
 		progressImagePieView.progress = progressValue
+		progressImageArcView.progress = progressValue
 		
 		progressLabel.stringValue = progressTitle
 		
@@ -79,7 +84,9 @@ class ViewController: NSViewController {
 		progressVerticalBarMenuItem.title = progressTitle
 		progressPieMenuItem.progress = progressValue
 		progressPieMenuItem.title = progressTitle
-		
+		progressArcMenuItem.progress = progressValue
+		progressArcMenuItem.title = progressTitle
+
 		// Call delegate's changeProgresss
 		// This will actualize progress image in statusitem
 		(NSApp.delegate as? AppDelegate)?.changeProgress(progressValue)

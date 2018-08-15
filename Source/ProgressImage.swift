@@ -15,12 +15,17 @@ public class ProgressImage: NSImage {
 	public static let defaultType = ProgressImage.ProgressType.horizontal
 	public static let defaultSize = NSSize(width: 24.0, height: 16.0)
 	
+	private static let arcStartAngle:CGFloat = -135.0
+	private static let arcEndAngle:CGFloat = -45.0
+	private static var arcFullRangeAngle:CGFloat = 0.0
+
 	// MARK: - Public instance properties
 	
 	public enum ProgressType: Int {
 		case horizontal
 		case vertical
 		case pie
+		case arc
 	}
 	
 	public var type = ProgressImage.ProgressType.horizontal {
@@ -76,8 +81,8 @@ public class ProgressImage: NSImage {
 				progressBackgroundColorDarkMode = NSColor(red:red, green:green, blue:blue, alpha: alpha * backgroundOpacity)
 			}
 			else {
-				progressColorDarkMode = NSColor(red:0.5, green:0.5, blue:0.5, alpha: 1.0)
-				progressBackgroundColorDarkMode = NSColor(red:0.5, green:0.5, blue:0.5, alpha: backgroundOpacity)
+				progressColorDarkMode = NSColor(red:0.80, green:0.80, blue:0.80, alpha:1.00)
+				progressBackgroundColorDarkMode = NSColor(red:0.80, green:0.80, blue:0.80, alpha: backgroundOpacity)
 			}
 			redrawProgressBar()
 		}
@@ -138,6 +143,9 @@ public class ProgressImage: NSImage {
 		// Set type
 		self.type = type
 		
+		// Set full range for arc types
+		ProgressImage.arcFullRangeAngle = 360.0 - fabs(ProgressImage.arcStartAngle - ProgressImage.arcEndAngle)
+
 		// Set default color (dark gray)
 		// This must be the last call, this will redraw the progressbar
 		self.color = NSColor.darkGray
@@ -223,6 +231,37 @@ public class ProgressImage: NSImage {
 			drawColor.setFill()
 			piePath.fill()
 			
+		case .arc:
+			
+			let arcThinSize:CGFloat = 1.0
+			let arcThickSize:CGFloat = 3.0
+			let arcCenter = NSPoint(x: self.size.width/2, y: self.size.height/2 - 1)
+			let arcRadius = ((self.size.width < self.size.height) ? self.size.width/2 : self.size.height/2) - arcThickSize/2
+			
+			// Draw arc
+			let arcPath = NSBezierPath()
+			arcPath.appendArc(withCenter: arcCenter,
+							  radius: arcRadius,
+							  startAngle: ProgressImage.arcStartAngle,
+							  endAngle: ProgressImage.arcEndAngle,
+							  clockwise: true)
+			drawColorBackground.setStroke()
+			arcPath.lineWidth = arcThinSize
+			arcPath.lineCapStyle = .roundLineCapStyle
+			arcPath.stroke()
+			
+			// Draw colored indicator
+			let thickArcPath = NSBezierPath()
+			thickArcPath.appendArc(withCenter: arcCenter,
+								   radius: arcRadius,
+								   startAngle: ProgressImage.arcStartAngle,
+								   endAngle: ProgressImage.arcStartAngle - ProgressImage.arcFullRangeAngle * progress,
+								   clockwise: true)
+			drawColor.setStroke()
+			thickArcPath.lineWidth = arcThickSize
+			thickArcPath.lineCapStyle = .roundLineCapStyle
+			thickArcPath.stroke()
+
 		}
 		
 		context?.restoreGState()

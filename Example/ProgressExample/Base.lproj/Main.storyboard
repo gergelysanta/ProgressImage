@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14269.12" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14113" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14269.12"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14113"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="box content view" minToolsVersion="7.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -157,12 +159,24 @@
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" id="7eE-K7-3nd"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="typeVal">
+                                        <integer key="value" value="3"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                            </imageView>
+                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="uJO-07-oBW" customClass="ProgressImageView" customModule="ProgressImage">
+                                <rect key="frame" x="52" y="196" width="24" height="24"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="uJO-07-oBW" secondAttribute="height" multiplier="1:1" id="rKA-WF-Im7"/>
+                                </constraints>
+                                <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="qFS-vy-PkQ"/>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="typeVal">
                                         <integer key="value" value="2"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gu2-8b-rJo" customClass="ProgressImageView" customModule="ProgressImage">
-                                <rect key="frame" x="52" y="196" width="128" height="24"/>
+                                <rect key="frame" x="84" y="196" width="128" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="3tT-kW-cLn"/>
                                     <constraint firstAttribute="width" constant="128" id="nAj-fH-ONr"/>
@@ -175,7 +189,7 @@
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZrI-x0-k0p">
-                                <rect key="frame" x="186" y="200" width="276" height="17"/>
+                                <rect key="frame" x="218" y="200" width="244" height="17"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Progress: 50%" id="ngE-hn-W0Q">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -231,16 +245,19 @@
                             <constraint firstAttribute="trailing" secondItem="J9W-hi-Uj0" secondAttribute="trailing" constant="20" id="5UH-Yo-wXv"/>
                             <constraint firstItem="ZrI-x0-k0p" firstAttribute="centerY" secondItem="gu2-8b-rJo" secondAttribute="centerY" id="6e3-zb-esx"/>
                             <constraint firstItem="uzf-AU-32p" firstAttribute="leading" secondItem="Ynx-XG-6RL" secondAttribute="trailing" constant="8" id="8Tc-Pm-Qii"/>
-                            <constraint firstItem="gu2-8b-rJo" firstAttribute="leading" secondItem="MK7-Zc-mCI" secondAttribute="trailing" constant="8" id="A4d-BM-SXu"/>
                             <constraint firstItem="uzf-AU-32p" firstAttribute="top" secondItem="gu2-8b-rJo" secondAttribute="bottom" constant="8" id="BG3-PE-AT5"/>
                             <constraint firstItem="QCj-sG-gKg" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="Byz-x9-4uC"/>
+                            <constraint firstItem="gu2-8b-rJo" firstAttribute="leading" secondItem="uJO-07-oBW" secondAttribute="trailing" constant="8" id="MXO-PL-4qa"/>
+                            <constraint firstItem="uJO-07-oBW" firstAttribute="leading" secondItem="MK7-Zc-mCI" secondAttribute="trailing" constant="8" id="N92-z1-unD"/>
                             <constraint firstItem="Ynx-XG-6RL" firstAttribute="top" secondItem="gu2-8b-rJo" secondAttribute="bottom" constant="8" id="OFc-sN-1rv"/>
                             <constraint firstAttribute="trailing" secondItem="ZrI-x0-k0p" secondAttribute="trailing" constant="20" id="PwU-ts-ihD"/>
                             <constraint firstItem="Ynx-XG-6RL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="QUv-N7-ht8"/>
                             <constraint firstItem="uzf-AU-32p" firstAttribute="top" secondItem="MK7-Zc-mCI" secondAttribute="bottom" constant="8" id="aae-Er-t5P"/>
+                            <constraint firstItem="uzf-AU-32p" firstAttribute="top" secondItem="uJO-07-oBW" secondAttribute="bottom" constant="8" id="cC5-kb-eNW"/>
                             <constraint firstItem="J9W-hi-Uj0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="gcx-3n-a9H"/>
                             <constraint firstItem="ZrI-x0-k0p" firstAttribute="leading" secondItem="gu2-8b-rJo" secondAttribute="trailing" constant="8" id="iN3-h1-IKq"/>
                             <constraint firstItem="MK7-Zc-mCI" firstAttribute="top" secondItem="J9W-hi-Uj0" secondAttribute="bottom" constant="8" id="is2-ph-LsP"/>
+                            <constraint firstItem="uJO-07-oBW" firstAttribute="top" secondItem="J9W-hi-Uj0" secondAttribute="bottom" constant="8" id="ooT-cq-par"/>
                             <constraint firstItem="QCj-sG-gKg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="pQK-QN-CMA"/>
                             <constraint firstAttribute="trailing" secondItem="uzf-AU-32p" secondAttribute="trailing" constant="20" id="r6g-In-IQ4"/>
                             <constraint firstAttribute="trailing" secondItem="QCj-sG-gKg" secondAttribute="trailing" constant="20" id="wbk-OE-Voh"/>
@@ -248,9 +265,11 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressArcMenuItem" destination="sk5-wD-JOO" id="dBP-xC-eZ9"/>
                         <outlet property="progressHorizontalBarMenuItem" destination="kB0-sM-dj8" id="Dmh-c5-U7D"/>
+                        <outlet property="progressImageArcView" destination="MK7-Zc-mCI" id="CJ6-AU-UIm"/>
                         <outlet property="progressImageHorizontalView" destination="gu2-8b-rJo" id="8ng-Gx-ks4"/>
-                        <outlet property="progressImagePieView" destination="MK7-Zc-mCI" id="u0y-t2-4Xy"/>
+                        <outlet property="progressImagePieView" destination="uJO-07-oBW" id="f8j-LA-w4s"/>
                         <outlet property="progressImageVerticalView" destination="Ynx-XG-6RL" id="7lb-ap-XaX"/>
                         <outlet property="progressLabel" destination="ZrI-x0-k0p" id="Zjv-rc-Fvk"/>
                         <outlet property="progressPieMenuItem" destination="0zB-tH-S87" id="zLP-qm-X6C"/>
@@ -292,6 +311,17 @@
                             </userDefinedRuntimeAttributes>
                             <connections>
                                 <action selector="menuItemSelected:" target="XfG-lQ-9wD" id="MKy-uO-WKN"/>
+                            </connections>
+                        </menuItem>
+                        <menuItem title="Arc progress" id="sk5-wD-JOO" customClass="ProgressMenuItem" customModule="ProgressImage">
+                            <modifierMask key="keyEquivalentModifierMask"/>
+                            <userDefinedRuntimeAttributes>
+                                <userDefinedRuntimeAttribute type="number" keyPath="typeVal">
+                                    <integer key="value" value="3"/>
+                                </userDefinedRuntimeAttribute>
+                            </userDefinedRuntimeAttributes>
+                            <connections>
+                                <action selector="menuItemSelected:" target="XfG-lQ-9wD" id="Bu8-Ae-l4a"/>
                             </connections>
                         </menuItem>
                     </items>

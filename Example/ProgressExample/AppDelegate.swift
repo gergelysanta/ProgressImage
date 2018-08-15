@@ -3,7 +3,7 @@
 //  ProgressImage
 //
 //  Created by gergelysanta on 05/11/2018.
-//  Copyright (c) 2018 gergelysanta. All rights reserved.
+//  Copyright (c) 2018 Gergely Sánta. All rights reserved.
 //
 
 import Cocoa
