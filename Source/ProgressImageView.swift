@@ -84,13 +84,12 @@ public class ProgressImageView: NSImageView {
 		super.image = ProgressImage(type: type, size: size)
 	}
 
-	// !!! Uncomment for Xcode10 !!!
-//	public override func viewDidChangeEffectiveAppearance() {
-//		if let progress = progressImage?.progress {
-//			// Re-set the same progress
-//			// This will force the progress image to redraw itself
-//			progressImage?.progress = progress
-//		}
-//	}
+	public override func viewDidChangeEffectiveAppearance() {
+		if let progress = progressImage?.progress {
+			// Re-set the same progress
+			// This will force the progress image to redraw itself
+			progressImage?.progress = progress
+		}
+	}
 	
 }

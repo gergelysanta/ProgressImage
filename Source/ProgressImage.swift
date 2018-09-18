@@ -144,7 +144,7 @@ public class ProgressImage: NSImage {
 		self.type = type
 		
 		// Set full range for arc types
-		ProgressImage.arcFullRangeAngle = 360.0 - fabs(ProgressImage.arcStartAngle - ProgressImage.arcEndAngle)
+		ProgressImage.arcFullRangeAngle = 360.0 - abs(ProgressImage.arcStartAngle - ProgressImage.arcEndAngle)
 
 		// Set default color (dark gray)
 		// This must be the last call, this will redraw the progressbar
@@ -159,11 +159,11 @@ public class ProgressImage: NSImage {
 		
 		let isDarkModeEnabled:Bool
 		// !!! Uncomment for Xcode10 !!!
-//		if #available(macOS 10.14, *) {
-//			isDarkModeEnabled = (NSApp.effectiveAppearance.name == .darkAqua)
-//		} else {
+		if #available(macOS 10.14, *) {
+			isDarkModeEnabled = (NSApp.effectiveAppearance.name == .darkAqua)
+		} else {
 			isDarkModeEnabled = false
-//		}
+		}
 		
 		let drawColor = isDarkModeEnabled ? progressColorDarkMode : progressColor
 		let drawColorBackground = isDarkModeEnabled ? progressBackgroundColorDarkMode : progressBackgroundColor
@@ -247,7 +247,7 @@ public class ProgressImage: NSImage {
 							  clockwise: true)
 			drawColorBackground.setStroke()
 			arcPath.lineWidth = arcThinSize
-			arcPath.lineCapStyle = .roundLineCapStyle
+			arcPath.lineCapStyle = .round
 			arcPath.stroke()
 			
 			// Draw colored indicator
@@ -259,7 +259,7 @@ public class ProgressImage: NSImage {
 								   clockwise: true)
 			drawColor.setStroke()
 			thickArcPath.lineWidth = arcThickSize
-			thickArcPath.lineCapStyle = .roundLineCapStyle
+			thickArcPath.lineCapStyle = .round
 			thickArcPath.stroke()
 
 		}

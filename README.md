@@ -25,34 +25,6 @@ ProgressImage used in NSImageView and in NSMenuItem in context menu:
 also in macOS Mojave in dark mode:
 ![Screenshot#4](https://github.com/gergelysanta/ProgressImage/blob/master/Screenshots/ProgressImageContextMenu_Dark.png "ProgressImage in Context Menu in dark mode")
 
-
-## Important note for building in macOS Mojave with Xcode10
-
-Dark mode support uses API from SDK 10.14 which is available in Xcode10. As Xcode10 is only in Beta phase yet, 10.14 API calls were commented out so
-ProgressImage can be built in Xcode latest release (Xcode9). If you're building your project in Xcode10 for macOS Mojave, uncomment the following lines:
-
-`ProgressImageView.swift lines 88-94`:
-```swift
-// !!! Uncomment for Xcode10 !!!
-//	public override func viewDidChangeEffectiveAppearance() {
-//		if let progress = progressImage?.progress {
-//			// Re-set the same progress
-//			// This will force the progress image to redraw itself
-//			progressImage?.progress = progress
-//		}
-//	}
-```
-
-`ProgressImage.swift lines 154-156 and 158`:
-```swift
-// !!! Uncomment for Xcode10 !!!
-//		if #available(macOS 10.14, *) {
-//			isDarkModeEnabled = (NSApp.effectiveAppearance.name == .darkAqua)
-//		} else {
-			isDarkModeEnabled = false
-//		}
-```
-
 ## Example
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
