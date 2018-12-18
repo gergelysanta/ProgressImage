@@ -30,12 +30,15 @@ public class ProgressMenuItem: NSMenuItem {
 		}
 	}
 	
-	public var type = ProgressImage.ProgressType.horizontal {
-		didSet {
-			self.progressImage?.type = type
+	public var type:ProgressImage.ProgressType {
+		get {
+			return progressImage?.type ?? ProgressImage.defaultType
+		}
+		set {
+			progressImage?.type = newValue
 		}
 	}
-	
+
 	public var progress:CGFloat? {
 		get {
 			return progressImage?.progress
@@ -65,12 +68,12 @@ public class ProgressMenuItem: NSMenuItem {
 	
 	override init(title string: String, action selector: Selector?, keyEquivalent charCode: String) {
 		super.init(title: string, action: selector, keyEquivalent: charCode)
-		self.initialize(withType: .horizontal)
+		self.initialize(withType: ProgressImage.defaultType)
 	}
 	
 	required public init(coder decoder: NSCoder) {
 		super.init(coder: decoder)
-		self.initialize(withType: .horizontal)
+		self.initialize(withType: ProgressImage.defaultType)
 	}
 	
 	private func initialize(withType type: ProgressImage.ProgressType) {

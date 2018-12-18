@@ -35,9 +35,12 @@ public class ProgressImageView: NSImageView {
 		}
 	}
 	
-	public var type = ProgressImage.ProgressType.horizontal {
-		didSet {
-			self.progressImage?.type = type
+	public var type:ProgressImage.ProgressType {
+		get {
+			return progressImage?.type ?? ProgressImage.defaultType
+		}
+		set {
+			progressImage?.type = newValue
 		}
 	}
 	
@@ -66,7 +69,7 @@ public class ProgressImageView: NSImageView {
 	
 	override init(frame frameRect: NSRect) {
 		super.init(frame: frameRect)
-		self.initialize(withType: .horizontal, andSize: frameRect.size)
+		self.initialize(withType: ProgressImage.defaultType, andSize: frameRect.size)
 	}
 	
 	init(type: ProgressImage.ProgressType, frame frameRect: NSRect) {
@@ -76,7 +79,7 @@ public class ProgressImageView: NSImageView {
 	
 	required public init?(coder: NSCoder) {
 		super.init(coder: coder)
-		self.initialize(withType: .horizontal, andSize: self.frame.size)
+		self.initialize(withType: ProgressImage.defaultType, andSize: self.frame.size)
 	}
 	
 	private func initialize(withType type: ProgressImage.ProgressType, andSize size: NSSize) {

@@ -158,7 +158,7 @@ public class ProgressImage: NSImage {
 		let imgRect = NSRect(origin: CGPoint.zero, size: size)
 		
 		let isDarkModeEnabled:Bool
-		// !!! Uncomment for Xcode10 !!!
+
 		if #available(macOS 10.14, *) {
 			isDarkModeEnabled = (NSApp.effectiveAppearance.name == .darkAqua)
 		} else {

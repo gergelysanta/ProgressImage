@@ -8,7 +8,7 @@
 
 Pod::Spec.new do |s|
   s.name             = 'ProgressImage'
-  s.version          = '0.2.2'
+  s.version          = '0.2.3'
   s.summary          = 'A small customizable ProgressImage usable in menu extras or context menus.'
 
 # This description is used to generate tags and improve search results.
@@ -36,7 +36,7 @@ in the menu extras bar for example.
   s.osx.deployment_target = "10.10"
   s.osx.frameworks = 'Cocoa'
 
-  s.swift_version = "4.0"
+  s.swift_version = "4.2"
 
   s.source_files = 'Source/**/*'
 
