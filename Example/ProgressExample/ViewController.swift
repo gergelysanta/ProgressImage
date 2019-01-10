@@ -14,8 +14,11 @@ class ViewController: NSViewController {
 	// MARK: - Outlets
 	
 	// Slider used for changing progress value in progressimages
-	@IBOutlet weak var progressSlider: NSSlider!
-	
+	@IBOutlet private weak var progressSlider: NSSlider!
+
+	// Checkbox enabling/disabling percentage info in ProgressImageView
+	@IBOutlet private weak var percentageCheck: NSButton!
+
 	// ProgressImageViews
 	// Their type is set in InterfaceBuilder:
 	//     Attributes Inspector -> Progress Image View -> Type Val
@@ -52,7 +55,23 @@ class ViewController: NSViewController {
 	@IBAction func sliderValueChanged(_ sender: NSSlider) {
 		changeProgress(CGFloat(sender.floatValue/100.0))
 	}
-	
+
+	@IBAction func percentageChecked(_ sender: NSButton) {
+		let labelOn:Bool = (sender.state == .on)
+		
+		// Disable/Enable percentage info in main window's ProgressImageViews
+		progressImageHorizontalView.showPercentage = labelOn
+		progressImageVerticalView.showPercentage = labelOn
+		progressImagePieView.showPercentage = labelOn
+		progressImageArcView.showPercentage = labelOn
+
+		// Disable/Enable percentage info in context menu
+		progressHorizontalBarMenuItem.showPercentage = labelOn
+		progressVerticalBarMenuItem.showPercentage = labelOn
+		progressPieMenuItem.showPercentage = labelOn
+		progressArcMenuItem.showPercentage = labelOn
+	}
+
 	@IBAction func menuItemSelected(_ sender: NSMenuItem) {
 		print(sender.title)
 	}
@@ -63,6 +82,7 @@ class ViewController: NSViewController {
 		
 		// Actualize progress image value
 		sliderValueChanged(progressSlider)
+		percentageChecked(percentageCheck)
 	}
 	
 	func changeProgress(_ progressValue: CGFloat) {

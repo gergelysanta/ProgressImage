@@ -45,45 +45,33 @@ public class ProgressImage: NSImage {
 			redrawProgressBar()
 		}
 	}
-	
-	public var backgroundOpacity:CGFloat = 0.6 {
-		didSet {
+
+	public override var isTemplate: Bool {
+		get {
+			return super.isTemplate
+		}
+		set {
+			super.isTemplate = newValue
+			progressBackgroundColor = backgroundColor(forForeground: progressColor)
+			progressBackgroundColorDarkMode = backgroundColor(forForeground: progressColorDarkMode)
 			redrawProgressBar()
 		}
 	}
-	
+
 	public var color = NSColor.darkGray {
 		didSet {
-			if let srgbColor = color.usingColorSpace(.sRGB) {
-				let red = srgbColor.cgColor.components?[0] ?? 0.5
-				let green = srgbColor.cgColor.components?[1] ?? 0.5
-				let blue = srgbColor.cgColor.components?[2] ?? 0.5
-				let alpha = srgbColor.cgColor.alpha
-				progressColor = NSColor(red:red, green:green, blue:blue, alpha: alpha)
-				progressBackgroundColor = NSColor(red:red, green:green, blue:blue, alpha: alpha * backgroundOpacity)
-			}
-			else {
-				progressColor = NSColor(red:0.5, green:0.5, blue:0.5, alpha: 1.0)
-				progressBackgroundColor = NSColor(red:0.5, green:0.5, blue:0.5, alpha: backgroundOpacity)
-			}
+			progressColor = color
+			progressBackgroundColor = backgroundColor(forForeground: color)
+			percentageColor = makeLabelColor(forForeground: color)
 			redrawProgressBar()
 		}
 	}
 	
 	public var colorDarkMode = NSColor.lightGray {
 		didSet {
-			if let srgbColor = colorDarkMode.usingColorSpace(.sRGB) {
-				let red = srgbColor.cgColor.components?[0] ?? 0.5
-				let green = srgbColor.cgColor.components?[1] ?? 0.5
-				let blue = srgbColor.cgColor.components?[2] ?? 0.5
-				let alpha = srgbColor.cgColor.alpha
-				progressColorDarkMode = NSColor(red:red, green:green, blue:blue, alpha: alpha)
-				progressBackgroundColorDarkMode = NSColor(red:red, green:green, blue:blue, alpha: alpha * backgroundOpacity)
-			}
-			else {
-				progressColorDarkMode = NSColor(red:0.80, green:0.80, blue:0.80, alpha:1.00)
-				progressBackgroundColorDarkMode = NSColor(red:0.80, green:0.80, blue:0.80, alpha: backgroundOpacity)
-			}
+			progressColorDarkMode = colorDarkMode
+			progressBackgroundColorDarkMode = backgroundColor(forForeground: colorDarkMode)
+			percentageColorDarkMode = makeLabelColor(forForeground: colorDarkMode)
 			redrawProgressBar()
 		}
 	}
@@ -95,7 +83,13 @@ public class ProgressImage: NSImage {
 			redrawProgressBar()
 		}
 	}
-	
+
+	public var showPercentage:Bool = false {
+		didSet {
+			redrawProgressBar()
+		}
+	}
+
 	// MARK: - Private instance properties
 	
 	private var progressColor = NSColor.darkGray
@@ -103,6 +97,9 @@ public class ProgressImage: NSImage {
 	
 	private var progressColorDarkMode = NSColor.lightGray
 	private var progressBackgroundColorDarkMode = NSColor.lightGray
+
+	private var percentageColor = NSColor.lightGray
+	private var percentageColorDarkMode = NSColor.darkGray
 
 	// MARK: - Initializers
 	
@@ -154,6 +151,28 @@ public class ProgressImage: NSImage {
 	
 	// MARK: - Custom draw function
 	
+	private func backgroundColor(forForeground color: NSColor) -> NSColor {
+		if let srgbColor = color.usingColorSpace(.sRGB) {
+			if isTemplate {
+				return NSColor(hue: srgbColor.hueComponent,
+							   saturation: srgbColor.saturationComponent,
+							   brightness: srgbColor.brightnessComponent,
+							   alpha: srgbColor.alphaComponent * 0.6)
+			}
+			else {
+				return NSColor(hue: srgbColor.hueComponent,
+							   saturation: max(srgbColor.saturationComponent - 0.3, 0.0),
+							   brightness: min(srgbColor.brightnessComponent + 0.3, 1.0),
+							   alpha: srgbColor.alphaComponent)
+			}
+		}
+		return color
+	}
+
+	private func makeLabelColor(forForeground color: NSColor) -> NSColor {
+		return color.isBright() ? color.darken() : color.lighten().lighten()
+	}
+
 	private func redrawProgressBar() {
 		let imgRect = NSRect(origin: CGPoint.zero, size: size)
 		
@@ -167,46 +186,59 @@ public class ProgressImage: NSImage {
 		
 		let drawColor = isDarkModeEnabled ? progressColorDarkMode : progressColor
 		let drawColorBackground = isDarkModeEnabled ? progressBackgroundColorDarkMode : progressBackgroundColor
-		
+		var labelColor = isDarkModeEnabled ? percentageColorDarkMode : percentageColor
+
+		var percentageString:NSString = ""
+		var fontSize:CGFloat = size.width < size.height ? size.width : size.height
+
 		self.lockFocus()
 		let context = NSGraphicsContext.current?.cgContext
 
 		// Clear the image
 		imgRect.fill(using: NSCompositingOperation.clear)
-		
+
 		context?.saveGState()
 		
 		switch type {
 		case .horizontal:
-			
+
+			percentageString = NSString(format: "%.0f%%", progress * 100)
+			fontSize *= 0.5
+
 			// Draw background
 			let bezierPath = NSBezierPath(roundedRect: imgRect, xRadius: cornerRadius, yRadius: cornerRadius)
 			drawColorBackground.setFill()
 			bezierPath.fill()
-			
+
 			// Set mask for drawing the progress meter
 			context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width*progress, height: size.height)))
-			
+
 			// Draw progress meter (same frame as the background but masked and with different color)
 			drawColor.setFill()
 			bezierPath.fill()
-			
+
 		case .vertical:
-			
+
+			percentageString = NSString(format: "%.0f%%", progress * 100)
+			fontSize *= 0.5
+
 			// Draw background
 			let bezierPath = NSBezierPath(roundedRect: imgRect, xRadius: cornerRadius, yRadius: cornerRadius)
 			drawColorBackground.setFill()
 			bezierPath.fill()
-			
+
 			// Set mask for drawing the progress meter
 			context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width, height: size.height*progress)))
 			
 			// Draw progress meter (same frame as the background but masked and with different color)
 			drawColor.setFill()
 			bezierPath.fill()
-			
+
 		case .pie:
-			
+
+			percentageString = NSString(format: "%.0f", progress * 100)
+			fontSize *= 0.35
+
 			let center = NSPoint(x: imgRect.size.width * 0.5, y: imgRect.size.height * 0.5)
 			let radius = (imgRect.size.width < imgRect.size.height) ? imgRect.size.width * 0.5 : imgRect.size.height * 0.5
 			
@@ -216,23 +248,26 @@ public class ProgressImage: NSImage {
 			
 			drawColorBackground.setFill()
 			backgroundPath.fill()
-			
+
 			// Draw the "pie graph"
 			// Start to draw the path from the center of the circle
 			let piePath = NSBezierPath()
 			piePath.move(to: center)
 			// Draws a line from the center to the starting point of the arc AND the arc
-			let startAngle:CGFloat = 0.0
-			let endAngle:CGFloat = 360.0 * progress
-			piePath.appendArc(withCenter: center, radius: radius, startAngle: startAngle + 90.0, endAngle: endAngle + 90.0)
+			let startAngle:CGFloat = 90.0 - (360.0 * progress)
+			let endAngle:CGFloat = 90.0
+			piePath.appendArc(withCenter: center, radius: radius, startAngle: startAngle, endAngle: endAngle)
 			// Closing the path draws a line from the end point of the arc back to the center
 			piePath.close()
 			// Draw the pie
 			drawColor.setFill()
 			piePath.fill()
-			
+
 		case .arc:
-			
+
+			percentageString = NSString(format: "%.0f", progress * 100)
+			fontSize *= 0.35
+
 			let arcThinSize:CGFloat = 1.0
 			let arcThickSize:CGFloat = 3.0
 			let arcCenter = NSPoint(x: self.size.width/2, y: self.size.height/2 - 1)
@@ -262,8 +297,54 @@ public class ProgressImage: NSImage {
 			thickArcPath.lineCapStyle = .round
 			thickArcPath.stroke()
 
+			labelColor = color
+
 		}
-		
+
+		context?.resetClip()
+
+		if showPercentage {
+			// Set attributes for font and color of percentage label
+			let attrs = [
+				NSAttributedString.Key.font: NSFont(name: "Arial Black", size: fontSize) ?? NSFont.systemFont(ofSize: fontSize),
+				NSAttributedString.Key.foregroundColor: labelColor
+			]
+
+			// Compute size of label
+			var stringSize = percentageString.size(withAttributes: attrs)
+
+			if type == .vertical {
+				// For vertical bar we need to rotate the text
+
+				// .. but first check if it fits to image
+				if stringSize.width >= size.height {
+					// It's not. Create new string without percentage sign and re-compute it's size
+					percentageString = NSString(format: "%.0f", progress * 100)
+					stringSize = percentageString.size(withAttributes: attrs)
+				}
+
+				// Rotate the context 90 degrees
+				let rotateTransformation = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
+				context?.concatenate(rotateTransformation)
+				// Move the context back into the view
+				context?.translateBy(x: size.height*0.53 - size.width*0.5, y: -size.height*0.53 - size.width*0.5)
+			}
+			else if type == .horizontal {
+				// For horizontal bar check if the full label with percentage sign fits into the image
+				if stringSize.width >= size.width {
+					// It's not. Create new string without percentage sign and re-compute it's size
+					percentageString = NSString(format: "%.0f", progress * 100)
+					stringSize = percentageString.size(withAttributes: attrs)
+				}
+			}
+
+			// And finally.. Dray the label
+			percentageString.draw(with: NSRect(origin: NSPoint(x: (size.width - stringSize.width)*0.5,
+															   y: (size.height - fontSize)*0.53),
+											   size: stringSize),
+								  attributes: attrs)
+		}
+
 		context?.restoreGState()
 		self.unlockFocus()
 	}

@@ -7,6 +7,7 @@
 
 import Cocoa
 
+@IBDesignable
 public class ProgressMenuItem: NSMenuItem {
 	
 	// MARK: - Public overrided properties
@@ -49,7 +50,17 @@ public class ProgressMenuItem: NSMenuItem {
 			}
 		}
 	}
-	
+
+	@IBInspectable
+	public var showPercentage:Bool {
+		get {
+			return progressImage?.showPercentage ?? false
+		}
+		set {
+			progressImage?.showPercentage = newValue
+		}
+	}
+
 	@available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'type' instead.")
 	@IBInspectable var typeVal: Int = 0 {
 		willSet {

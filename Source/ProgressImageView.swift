@@ -55,7 +55,18 @@ public class ProgressImageView: NSImageView {
 			self.needsDisplay = true
 		}
 	}
-	
+
+	@IBInspectable
+	public var showPercentage:Bool {
+		get {
+			return progressImage?.showPercentage ?? false
+		}
+		set {
+			progressImage?.showPercentage = newValue
+			self.needsDisplay = true
+		}
+	}
+
 	@available(*, unavailable, message: "This property is reserved for Interface Builder. Use 'type' instead.")
 	@IBInspectable var typeVal: Int = 0 {
 		willSet {

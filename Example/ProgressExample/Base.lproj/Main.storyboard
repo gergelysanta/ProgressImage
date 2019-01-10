@@ -173,21 +173,26 @@
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
-                            <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gu2-8b-rJo" customClass="ProgressImageView" customModule="ProgressImage">
-                                <rect key="frame" x="84" y="196" width="128" height="24"/>
+                            <imageView verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gu2-8b-rJo" customClass="ProgressImageView" customModule="ProgressImage">
+                                <rect key="frame" x="84" y="196" width="211" height="24"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="24" id="3tT-kW-cLn"/>
-                                    <constraint firstAttribute="width" constant="128" id="nAj-fH-ONr"/>
                                 </constraints>
                                 <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" id="6z6-iM-YZ3"/>
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="typeVal">
                                         <integer key="value" value="0"/>
                                     </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
+                                        <color key="value" name="windowBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZrI-x0-k0p">
-                                <rect key="frame" x="218" y="200" width="244" height="17"/>
+                                <rect key="frame" x="301" y="200" width="124" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="120" id="2Sd-U6-X42"/>
+                                </constraints>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Progress: 50%" id="ngE-hn-W0Q">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -203,6 +208,9 @@
                                 <userDefinedRuntimeAttributes>
                                     <userDefinedRuntimeAttribute type="number" keyPath="typeVal">
                                         <integer key="value" value="1"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="labelColor">
+                                        <color key="value" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                     </userDefinedRuntimeAttribute>
                                 </userDefinedRuntimeAttributes>
                             </imageView>
@@ -234,6 +242,16 @@
                                     <outlet property="menu" destination="qDX-7i-wqE" id="FOx-eC-Bqh"/>
                                 </connections>
                             </box>
+                            <button horizontalHuggingPriority="252" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="O73-hp-fIA">
+                                <rect key="frame" x="429" y="199" width="33" height="18"/>
+                                <buttonCell key="cell" type="check" title="%" bezelStyle="regularSquare" imagePosition="left" state="on" inset="2" id="7c1-m9-ZnF">
+                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="percentageChecked:" target="XfG-lQ-9wD" id="xbT-yL-CfI"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <constraints>
                             <constraint firstAttribute="bottom" secondItem="Ynx-XG-6RL" secondAttribute="bottom" constant="20" id="3GG-A3-IJz"/>
@@ -248,13 +266,15 @@
                             <constraint firstItem="gu2-8b-rJo" firstAttribute="leading" secondItem="uJO-07-oBW" secondAttribute="trailing" constant="8" id="MXO-PL-4qa"/>
                             <constraint firstItem="uJO-07-oBW" firstAttribute="leading" secondItem="MK7-Zc-mCI" secondAttribute="trailing" constant="8" id="N92-z1-unD"/>
                             <constraint firstItem="Ynx-XG-6RL" firstAttribute="top" secondItem="gu2-8b-rJo" secondAttribute="bottom" constant="8" id="OFc-sN-1rv"/>
-                            <constraint firstAttribute="trailing" secondItem="ZrI-x0-k0p" secondAttribute="trailing" constant="20" id="PwU-ts-ihD"/>
                             <constraint firstItem="Ynx-XG-6RL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="QUv-N7-ht8"/>
                             <constraint firstItem="uzf-AU-32p" firstAttribute="top" secondItem="MK7-Zc-mCI" secondAttribute="bottom" constant="8" id="aae-Er-t5P"/>
+                            <constraint firstItem="O73-hp-fIA" firstAttribute="centerY" secondItem="gu2-8b-rJo" secondAttribute="centerY" id="c7B-Cu-pdL"/>
                             <constraint firstItem="uzf-AU-32p" firstAttribute="top" secondItem="uJO-07-oBW" secondAttribute="bottom" constant="8" id="cC5-kb-eNW"/>
+                            <constraint firstAttribute="trailing" secondItem="O73-hp-fIA" secondAttribute="trailing" constant="20" id="dOq-V9-bYf"/>
                             <constraint firstItem="J9W-hi-Uj0" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="gcx-3n-a9H"/>
                             <constraint firstItem="ZrI-x0-k0p" firstAttribute="leading" secondItem="gu2-8b-rJo" secondAttribute="trailing" constant="8" id="iN3-h1-IKq"/>
                             <constraint firstItem="MK7-Zc-mCI" firstAttribute="top" secondItem="J9W-hi-Uj0" secondAttribute="bottom" constant="8" id="is2-ph-LsP"/>
+                            <constraint firstItem="O73-hp-fIA" firstAttribute="leading" secondItem="ZrI-x0-k0p" secondAttribute="trailing" constant="8" id="li9-yb-F2b"/>
                             <constraint firstItem="uJO-07-oBW" firstAttribute="top" secondItem="J9W-hi-Uj0" secondAttribute="bottom" constant="8" id="ooT-cq-par"/>
                             <constraint firstItem="QCj-sG-gKg" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="pQK-QN-CMA"/>
                             <constraint firstAttribute="trailing" secondItem="uzf-AU-32p" secondAttribute="trailing" constant="20" id="r6g-In-IQ4"/>
@@ -263,6 +283,7 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="percentageCheck" destination="O73-hp-fIA" id="IsG-5w-qaP"/>
                         <outlet property="progressArcMenuItem" destination="sk5-wD-JOO" id="dBP-xC-eZ9"/>
                         <outlet property="progressHorizontalBarMenuItem" destination="kB0-sM-dj8" id="Dmh-c5-U7D"/>
                         <outlet property="progressImageArcView" destination="MK7-Zc-mCI" id="CJ6-AU-UIm"/>
