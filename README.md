@@ -5,7 +5,6 @@
 [![Xcode 9](https://img.shields.io/badge/Xcode-9-blue.svg)](https://developer.apple.com/xcode/)
 [![Swift 4](https://img.shields.io/badge/Swift-4-blue.svg)](https://swift.org/)
 [![Platform](https://img.shields.io/badge/platforms-macOS-blue.svg)](https://developer.apple.com/platforms/)
-[![CI Status](https://img.shields.io/travis/gergelysanta/ProgressImage.svg?style=flat)](https://travis-ci.org/gergelysanta/ProgressImage)
 
 An enhanced NSImage displaying simple customizable progressbar. This can be used in places where standard images are used,
 like in context menus or status item (item in menubar/menuextras). 
