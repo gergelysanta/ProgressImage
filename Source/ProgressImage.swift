@@ -53,7 +53,7 @@ public class ProgressImage: NSImage {
 		set {
 			super.isTemplate = newValue
 			progressBackgroundColor = backgroundColor(forForeground: progressColor)
-			progressBackgroundColorDarkMode = backgroundColor(forForeground: progressColorDarkMode)
+			progressBackgroundColorDarkMode = backgroundColor(forForeground: progressColorDarkMode, darkMode: true)
 			redrawProgressBar()
 		}
 	}
@@ -67,11 +67,11 @@ public class ProgressImage: NSImage {
 		}
 	}
 	
-	public var colorDarkMode = NSColor.lightGray {
+	public var colorDarkMode = NSColor.white {// NSColor.lightGray {
 		didSet {
 			progressColorDarkMode = colorDarkMode
-			progressBackgroundColorDarkMode = backgroundColor(forForeground: colorDarkMode)
-			percentageColorDarkMode = makeLabelColor(forForeground: colorDarkMode)
+			progressBackgroundColorDarkMode = backgroundColor(forForeground: colorDarkMode, darkMode: true)
+			percentageColorDarkMode = makeLabelColor(forForeground: colorDarkMode, darkMode: true)
 			redrawProgressBar()
 		}
 	}
@@ -145,45 +145,71 @@ public class ProgressImage: NSImage {
 
 		// Set default color (dark gray)
 		// This must be the last call, this will redraw the progressbar
-		self.color = NSColor.darkGray
-		self.colorDarkMode = NSColor.lightGray
+		let colorTuplet = (color, colorDarkMode)
+		self.color = colorTuplet.0
+		self.colorDarkMode = colorTuplet.1
 	}
 	
 	// MARK: - Custom draw function
 	
-	private func backgroundColor(forForeground color: NSColor) -> NSColor {
+	private func backgroundColor(forForeground color: NSColor, darkMode: Bool = false) -> NSColor {
 		if let srgbColor = color.usingColorSpace(.sRGB) {
-			if isTemplate {
-				return NSColor(hue: srgbColor.hueComponent,
-							   saturation: srgbColor.saturationComponent,
-							   brightness: srgbColor.brightnessComponent,
-							   alpha: srgbColor.alphaComponent * 0.6)
-			}
-			else {
-				return NSColor(hue: srgbColor.hueComponent,
-							   saturation: max(srgbColor.saturationComponent - 0.3, 0.0),
-							   brightness: min(srgbColor.brightnessComponent + 0.3, 1.0),
-							   alpha: srgbColor.alphaComponent)
+			if darkMode {
+
+				// Dark mode
+
+				if isTemplate {
+					return NSColor(hue: srgbColor.hueComponent,
+								   saturation: srgbColor.saturationComponent,
+								   brightness: srgbColor.brightnessComponent,
+								   alpha: srgbColor.alphaComponent * 0.2)
+				}
+				else {
+					return NSColor(hue: srgbColor.hueComponent,
+								   saturation: srgbColor.saturationComponent,
+								   brightness: max(srgbColor.brightnessComponent - 0.3, 0.0),
+								   alpha: srgbColor.alphaComponent)
+				}
+
+			} else {
+
+				// Light mode
+
+				if isTemplate {
+					return NSColor(hue: srgbColor.hueComponent,
+								   saturation: srgbColor.saturationComponent,
+								   brightness: srgbColor.brightnessComponent,
+								   alpha: srgbColor.alphaComponent * 0.5)
+				}
+				else {
+					return NSColor(hue: srgbColor.hueComponent,
+								   saturation: max(srgbColor.saturationComponent - 0.3, 0.0),
+								   brightness: min(srgbColor.brightnessComponent + 0.3, 1.0),
+								   alpha: srgbColor.alphaComponent)
+				}
 			}
 		}
 		return color
 	}
 
-	private func makeLabelColor(forForeground color: NSColor) -> NSColor {
-		return color.isBright() ? color.darken() : color.lighten().lighten()
+	private func makeLabelColor(forForeground color: NSColor, darkMode: Bool = false) -> NSColor {
+		if darkMode {
+			return color.isBright() ? color.darken().darken() : color.lighten()
+		} else {
+			return color.isBright() ? color.darken() : color.lighten().lighten()
+		}
 	}
 
 	private func redrawProgressBar() {
 		let imgRect = NSRect(origin: CGPoint.zero, size: size)
 		
 		let isDarkModeEnabled:Bool
-
 		if #available(macOS 10.14, *) {
 			isDarkModeEnabled = (NSApp.effectiveAppearance.name == .darkAqua)
 		} else {
 			isDarkModeEnabled = false
 		}
-		
+
 		let drawColor = isDarkModeEnabled ? progressColorDarkMode : progressColor
 		let drawColorBackground = isDarkModeEnabled ? progressBackgroundColorDarkMode : progressBackgroundColor
 		var labelColor = isDarkModeEnabled ? percentageColorDarkMode : percentageColor
@@ -297,7 +323,7 @@ public class ProgressImage: NSImage {
 			thickArcPath.lineCapStyle = .round
 			thickArcPath.stroke()
 
-			labelColor = color
+			labelColor = drawColor
 
 		}
 

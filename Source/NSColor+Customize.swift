@@ -22,8 +22,8 @@ extension NSColor {
 	func darken() -> NSColor {
 		if let srgbColor = self.usingColorSpace(.sRGB) {
 			return NSColor(hue: srgbColor.hueComponent,
-						   saturation: max(srgbColor.saturationComponent + 0.3, 0.0),
-						   brightness: min(srgbColor.brightnessComponent - 0.3, 1.0),
+						   saturation: srgbColor.saturationComponent,
+						   brightness: max(srgbColor.brightnessComponent - 0.3, 0.0),
 						   alpha: srgbColor.alphaComponent)
 		}
 		return self
@@ -31,7 +31,7 @@ extension NSColor {
 
 	func isBright() -> Bool {
 		if let srgbColor = self.usingColorSpace(.sRGB) {
-			return srgbColor.brightnessComponent > 124.0
+			return srgbColor.brightnessComponent > 124.0/255.0
 		}
 		return false
 	}
