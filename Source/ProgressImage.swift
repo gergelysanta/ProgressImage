@@ -67,7 +67,7 @@ public class ProgressImage: NSImage {
 		}
 	}
 	
-	public var colorDarkMode = NSColor.white {// NSColor.lightGray {
+	public var colorDarkMode = NSColor.lightGray {
 		didSet {
 			progressColorDarkMode = colorDarkMode
 			progressBackgroundColorDarkMode = backgroundColor(forForeground: colorDarkMode, darkMode: true)
@@ -194,9 +194,9 @@ public class ProgressImage: NSImage {
 
 	private func makeLabelColor(forForeground color: NSColor, darkMode: Bool = false) -> NSColor {
 		if darkMode {
-			return color.isBright() ? color.darken().darken() : color.lighten()
+			return color.isBright() ? color.darken(byValue: 0.5) : color.lighten()
 		} else {
-			return color.isBright() ? color.darken() : color.lighten().lighten()
+			return color.isBright() ? color.darken() : color.lighten(byValue: 0.6)
 		}
 	}
 

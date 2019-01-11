@@ -9,21 +9,21 @@ import Foundation
 
 extension NSColor {
 
-	func lighten() -> NSColor {
+	func lighten(byValue value: CGFloat = 0.3) -> NSColor {
 		if let srgbColor = self.usingColorSpace(.sRGB) {
 			return NSColor(hue: srgbColor.hueComponent,
-						   saturation: max(srgbColor.saturationComponent - 0.3, 0.0),
-						   brightness: min(srgbColor.brightnessComponent + 0.3, 1.0),
+						   saturation: max(srgbColor.saturationComponent - value, 0.0),
+						   brightness: min(srgbColor.brightnessComponent + value, 1.0),
 						   alpha: srgbColor.alphaComponent)
 		}
 		return self
 	}
 
-	func darken() -> NSColor {
+	func darken(byValue value: CGFloat = 0.3) -> NSColor {
 		if let srgbColor = self.usingColorSpace(.sRGB) {
 			return NSColor(hue: srgbColor.hueComponent,
 						   saturation: srgbColor.saturationComponent,
-						   brightness: max(srgbColor.brightnessComponent - 0.3, 0.0),
+						   brightness: max(srgbColor.brightnessComponent - value, 0.0),
 						   alpha: srgbColor.alphaComponent)
 		}
 		return self
