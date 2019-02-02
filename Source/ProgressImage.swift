@@ -30,19 +30,19 @@ public class ProgressImage: NSImage {
 	
 	public var type = ProgressImage.ProgressType.horizontal {
 		didSet {
-			redrawProgressBar()
+			self.draw(in: NSRect(origin: NSPoint.zero, size: self.size))
 		}
 	}
 	
 	public override var size: NSSize {
 		didSet {
-			redrawProgressBar()
+			self.draw(in: NSRect(origin: NSPoint.zero, size: self.size))
 		}
 	}
 	
 	public var cornerRadius:CGFloat = 5.0 {
 		didSet {
-			redrawProgressBar()
+			self.draw(in: NSRect(origin: NSPoint.zero, size: self.size))
 		}
 	}
 
@@ -52,27 +52,27 @@ public class ProgressImage: NSImage {
 		}
 		set {
 			super.isTemplate = newValue
-			progressBackgroundColor = backgroundColor(forForeground: progressColor)
-			progressBackgroundColorDarkMode = backgroundColor(forForeground: progressColorDarkMode, darkMode: true)
-			redrawProgressBar()
+			progressBackgroundColor = computeBackgroundColor(forForeground: progressColor)
+			progressBackgroundColorDarkMode = computeBackgroundColor(forForeground: progressColorDarkMode, darkMode: true)
+			self.draw(in: NSRect(origin: NSPoint.zero, size: self.size))
 		}
 	}
 
 	public var color = NSColor.darkGray {
 		didSet {
 			progressColor = color
-			progressBackgroundColor = backgroundColor(forForeground: color)
-			percentageColor = makeLabelColor(forForeground: color)
-			redrawProgressBar()
+			progressBackgroundColor = computeBackgroundColor(forForeground: color)
+			percentageColor = computeLabelColor(forForeground: color)
+			self.draw(in: NSRect(origin: NSPoint.zero, size: self.size))
 		}
 	}
 	
 	public var colorDarkMode = NSColor.lightGray {
 		didSet {
 			progressColorDarkMode = colorDarkMode
-			progressBackgroundColorDarkMode = backgroundColor(forForeground: colorDarkMode, darkMode: true)
-			percentageColorDarkMode = makeLabelColor(forForeground: colorDarkMode, darkMode: true)
-			redrawProgressBar()
+			progressBackgroundColorDarkMode = computeBackgroundColor(forForeground: colorDarkMode, darkMode: true)
+			percentageColorDarkMode = computeLabelColor(forForeground: colorDarkMode, darkMode: true)
+			self.draw(in: NSRect(origin: NSPoint.zero, size: self.size))
 		}
 	}
 	
@@ -80,13 +80,13 @@ public class ProgressImage: NSImage {
 		didSet {
 			if progress < 0.0 { progress = 0.0 }
 			else if progress > 1.0 { progress = 1.0 }
-			redrawProgressBar()
+			self.draw(in: NSRect(origin: NSPoint.zero, size: self.size))
 		}
 	}
 
 	public var showPercentage:Bool = false {
 		didSet {
-			redrawProgressBar()
+			self.draw(in: NSRect(origin: NSPoint.zero, size: self.size))
 		}
 	}
 
@@ -152,7 +152,7 @@ public class ProgressImage: NSImage {
 	
 	// MARK: - Custom draw function
 	
-	private func backgroundColor(forForeground color: NSColor, darkMode: Bool = false) -> NSColor {
+	private func computeBackgroundColor(forForeground color: NSColor, darkMode: Bool = false) -> NSColor {
 		if let srgbColor = color.usingColorSpace(.sRGB) {
 			if darkMode {
 
@@ -192,7 +192,7 @@ public class ProgressImage: NSImage {
 		return color
 	}
 
-	private func makeLabelColor(forForeground color: NSColor, darkMode: Bool = false) -> NSColor {
+	private func computeLabelColor(forForeground color: NSColor, darkMode: Bool = false) -> NSColor {
 		if darkMode {
 			return color.isBright() ? color.darken(byValue: 0.5) : color.lighten()
 		} else {
@@ -200,7 +200,9 @@ public class ProgressImage: NSImage {
 		}
 	}
 
-	private func redrawProgressBar() {
+	public override func draw(in rect: NSRect) {
+		super.draw(in: rect)
+
 		let imgRect = NSRect(origin: CGPoint.zero, size: size)
 		
 		let isDarkModeEnabled:Bool
@@ -217,14 +219,20 @@ public class ProgressImage: NSImage {
 		var percentageString:NSString = ""
 		var fontSize:CGFloat = size.width < size.height ? size.width : size.height
 
+		// Prepare the image to receive drawing commands.
+		// This sets the current drawing context to the area of the offscreen window used to cache the receiver's contents.
+		// Subsequent drawing commands are composited to this offscreen window.
 		self.lockFocus()
-		let context = NSGraphicsContext.current?.cgContext
+
+		// Get the context (which was set by lockFocus)
+		guard let context = NSGraphicsContext.current?.cgContext else {
+			self.unlockFocus()
+			return
+		}
 
 		// Clear the image
 		imgRect.fill(using: NSCompositingOperation.clear)
 
-		context?.saveGState()
-		
 		switch type {
 		case .horizontal:
 
@@ -237,7 +245,7 @@ public class ProgressImage: NSImage {
 			bezierPath.fill()
 
 			// Set mask for drawing the progress meter
-			context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width*progress, height: size.height)))
+			context.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width*progress, height: size.height)))
 
 			// Draw progress meter (same frame as the background but masked and with different color)
 			drawColor.setFill()
@@ -254,7 +262,7 @@ public class ProgressImage: NSImage {
 			bezierPath.fill()
 
 			// Set mask for drawing the progress meter
-			context?.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width, height: size.height*progress)))
+			context.clip(to: CGRect(origin: CGPoint.zero, size: CGSize(width: size.width, height: size.height*progress)))
 			
 			// Draw progress meter (same frame as the background but masked and with different color)
 			drawColor.setFill()
@@ -327,7 +335,7 @@ public class ProgressImage: NSImage {
 
 		}
 
-		context?.resetClip()
+		context.resetClip()
 
 		if showPercentage {
 			// Set attributes for font and color of percentage label
@@ -338,6 +346,9 @@ public class ProgressImage: NSImage {
 
 			// Compute size of label
 			var stringSize = percentageString.size(withAttributes: attrs)
+
+			// Save context state so we can restore it after rotating
+			context.saveGState()
 
 			if type == .vertical {
 				// For vertical bar we need to rotate the text
@@ -351,9 +362,9 @@ public class ProgressImage: NSImage {
 
 				// Rotate the context 90 degrees
 				let rotateTransformation = CGAffineTransform(rotationAngle: CGFloat.pi / 2)
-				context?.concatenate(rotateTransformation)
+				context.concatenate(rotateTransformation)
 				// Move the context back into the view
-				context?.translateBy(x: size.height*0.53 - size.width*0.5, y: -size.height*0.53 - size.width*0.5)
+				context.translateBy(x: size.height*0.53 - size.width*0.5, y: -size.height*0.53 - size.width*0.5)
 			}
 			else if type == .horizontal {
 				// For horizontal bar check if the full label with percentage sign fits into the image
@@ -369,9 +380,12 @@ public class ProgressImage: NSImage {
 															   y: (size.height - fontSize)*0.53),
 											   size: stringSize),
 								  attributes: attrs)
+
+			// Restore orginal state of the context
+			context.restoreGState()
 		}
 
-		context?.restoreGState()
+		// Restore the focus to the previous owner, if any
 		self.unlockFocus()
 	}
 	
