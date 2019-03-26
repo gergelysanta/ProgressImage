@@ -2,9 +2,9 @@
 
 [![Version](https://img.shields.io/cocoapods/v/ProgressImage.svg?style=flat)](https://cocoapods.org/pods/ProgressImage)
 [![License](https://img.shields.io/cocoapods/l/ProgressImage.svg?style=flat)](https://cocoapods.org/pods/ProgressImage)
-[![Xcode 9](https://img.shields.io/badge/Xcode-9-blue.svg)](https://developer.apple.com/xcode/)
+[![Xcode 9](https://img.shields.io/badge/Xcode-10-blue.svg)](https://developer.apple.com/xcode/)
 [![Swift 4](https://img.shields.io/badge/Swift-4-blue.svg)](https://swift.org/)
-[![Platform](https://img.shields.io/badge/platforms-macOS-blue.svg)](https://developer.apple.com/platforms/)
+[![Platform](https://img.shields.io/badge/platforms-macOS-blue.svg)](https://developer.apple.com/macOS)
 
 An enhanced NSImage displaying simple customizable progressbar. This can be used in places where standard images are used,
 like in context menus or status item (item in menubar/menuextras). 
